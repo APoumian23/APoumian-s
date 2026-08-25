@@ -25,6 +25,18 @@ PROTEGIDAS=(
   .env.example .env.production .env.local .env.development.local
 )
 
+# `next build` y `next dev` escriben en directorios distintos (ver next.config.ts),
+# pero basta con que alguien borre .next a mano —o que un build futuro cambie de
+# opinión— para que el servidor de desarrollo se quede sin los trozos que ya tenía
+# cargados y responda 500 con "Cannot find module './325.js'". Ya pasó dos veces.
+# Avisar cuesta una línea; el desconcierto de ver el sitio caído sin haber tocado
+# nada cuesta media hora.
+if lsof -nP -iTCP:3180 -sTCP:LISTEN >/dev/null 2>&1; then
+  echo "⚠ El servidor de desarrollo está encendido en el 3180."
+  echo "  Si algo se rompe después de esto, reinícialo: no es el código, es la caché."
+  echo
+fi
+
 echo "→ Compilando…"
 pnpm exec next build >/dev/null
 
