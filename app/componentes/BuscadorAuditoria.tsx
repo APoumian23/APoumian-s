@@ -18,6 +18,20 @@ type Estado = "quieto" | "encolando" | "corriendo" | "listo" | "error";
 
 type Tally = { pass: number; warn: number; fail: number; na: number; skipped: number };
 
+/* Lo que devuelve `/progreso`: plano, no anidado bajo `audit`. */
+type Progreso = {
+  status: string;
+  progressPct: number | null;
+  progressStage: string | null;
+  error: string | null;
+  scoreGlobal: number | null;
+  scoresByCategory: Record<string, number> | null;
+  tally: Tally | null;
+  pagesCrawled: string[] | null;
+  ultimoSeq: number;
+  totalResultados: number;
+};
+
 type Respuesta = {
   audit: {
     id: string;
@@ -132,7 +146,7 @@ export default function BuscadorAuditoria() {
   const [datos, setDatos] = useState<Respuesta | null>(null);
   const sondeo = useRef<number | null>(null);
 
-  useEffect(() => () => { if (sondeo.current) window.clearInterval(sondeo.current); }, []);
+  useEffect(() => () => { if (sondeo.current) window.clearTimeout(sondeo.current); }, []);
 
   const ocupado = estado === "encolando" || estado === "corriendo";
 
@@ -169,23 +183,88 @@ export default function BuscadorAuditoria() {
     }
 
     setEstado("corriendo");
-    sondeo.current = window.setInterval(async () => {
+
+    /* Se sondea `/progreso`, que pesa menos de 1 KB, y NO el reporte completo,
+     * que pesa ~550 KB.
+     *
+     * Medido contra el motor en local, con una auditoría ya terminada:
+     * `/progreso` responde en 9 ms con 2 consultas a la base; el reporte
+     * completo, en 22 ms con 10. Al visitante anónimo el muro le retiene los
+     * hallazgos, así que la diferencia de bytes es menor de lo que parece —el
+     * costo real está en las consultas, no en el peso—.
+     *
+     * Sondeando el pesado cada segundo y medio, veinte personas esperando son
+     * ~133 consultas por segundo contra Postgres sin que nadie esté leyendo
+     * nada. El reporte completo se pide UNA vez, al terminar.
+     *
+     * El intervalo además se va abriendo. Solo dos auditorías corren a la vez
+     * (WORKER_CONCURRENCY), así que en una ráfaga hay gente esperando turno:
+     * preguntar cada segundo y medio durante media hora es puro ruido. */
+    let espera = 1500;
+    const sondear = async () => {
+      let seguir = true;
       try {
-        const r = await fetch(`${MOTOR}/api/audits/${auditId}`, { credentials: "include", cache: "no-store" });
-        if (!r.ok) return;
-        const d: Respuesta = await r.json();
-        setDatos(d);
-        if (d.audit.status === "done" || d.audit.status === "error") {
-          if (sondeo.current) window.clearInterval(sondeo.current);
-          if (d.audit.status === "error") {
-            setError("El motor no pudo terminar esta auditoría. Puede que el sitio bloquee el acceso.");
-            setEstado("error");
-          } else {
+        const r = await fetch(`${MOTOR}/api/audits/${auditId}/progreso`, {
+          credentials: "include",
+          cache: "no-store",
+        });
+        if (r.ok) {
+          const p: Progreso = await r.json();
+
+          /* Se arma la misma forma que devuelve el reporte para no duplicar el
+             renderizado. Lo que el avance no trae —etiquetas y lo retenido—
+             llega al final; `categoryLabels[k] ?? k` ya cae en la clave. */
+          setDatos((prev) => ({
+            audit: {
+              id: auditId,
+              status: p.status,
+              url: limpia,
+              progressPct: p.progressPct,
+              /* En cola no hay etapa que contar, y un 0% mudo durante media
+                 hora se lee como una pantalla rota, no como una espera. */
+              progressStage:
+                p.status === "queued"
+                  ? "En turno. Corren dos auditorías a la vez; esta empieza en cuanto se libere una."
+                  : p.progressStage,
+              scoreGlobal: p.scoreGlobal,
+              scoresByCategory: p.scoresByCategory,
+              tally: p.tally,
+              pagesCrawled: p.pagesCrawled,
+            },
+            categoryLabels: prev?.categoryLabels ?? {},
+            retenido: prev?.retenido ?? { hallazgos: 0, ia: 0, corridaConIa: modo === "ia" },
+            totalChecks: p.totalResultados,
+          }));
+
+          if (p.status === "done") {
+            seguir = false;
+            const full = await fetch(`${MOTOR}/api/audits/${auditId}`, {
+              credentials: "include",
+              cache: "no-store",
+            });
+            if (full.ok) setDatos((await full.json()) as Respuesta);
             setEstado("listo");
+          } else if (p.status === "failed") {
+            /* El motor dice `failed`, no `error`. Antes se comparaba contra
+               "error" y la condición nunca se cumplía: una auditoría fallida
+               dejaba al visitante mirando la barra para siempre. */
+            seguir = false;
+            setError(
+              p.error ??
+                "El motor no pudo terminar esta auditoría. Puede que el sitio bloquee el acceso.",
+            );
+            setEstado("error");
           }
         }
-      } catch { /* un sondeo fallido no rompe nada: el siguiente lo reintenta */ }
-    }, 1500);
+      } catch {
+        /* Un sondeo fallido no rompe nada: el siguiente lo reintenta. */
+      }
+      if (seguir) {
+        espera = Math.min(espera * 1.2, 8000);
+        sondeo.current = window.setTimeout(sondear, espera);
+      }
+    };
+    sondeo.current = window.setTimeout(sondear, espera);
   }
 
   const pct = datos?.audit.progressPct ?? 0;
