@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TAPREVIEWS } from "@/lib/contenido";
-import { wa } from "@/lib/enlaces";
+import { wa, TAP_ACCESO } from "@/lib/enlaces";
 import Nfc from "../componentes/Nfc";
 import Rejilla from "../componentes/Rejilla";
 
@@ -58,6 +58,12 @@ export default function TapReviewsPage() {
             <div className="hero__actions">
               <a className="btn" href={WA_TAP} target="_blank" rel="noopener noreferrer">Pedir la mía por WhatsApp</a>
               <Link className="link" href="/contacto">O cuéntanos de tu negocio →</Link>
+              {/* Quien ya es cliente no viene a que le vendan: viene a ver sus
+                  taps. Sin este enlace tendría que escribir la dirección de
+                  memoria o preguntarla cada mes. */}
+              <a className="link" href={TAP_ACCESO} target="_blank" rel="noopener noreferrer">
+                Ya soy cliente: entrar a mi panel
+              </a>
             </div>
           </div>
           <div className="ilus"><Nfc /></div>

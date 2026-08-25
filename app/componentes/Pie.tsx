@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { DISCIPLINAS, SITE } from "@/lib/contenido";
-import { CORREO, MOTOR, WA_GENERAL } from "@/lib/enlaces";
+import { CORREO, MOTOR, TAP_ACCESO, WA_GENERAL } from "@/lib/enlaces";
 import Marca from "./Marca";
 
 /* Pie en tres columnas: marca con acción, mapa del sitio y productos/contacto.
@@ -58,6 +58,11 @@ export default function Pie() {
               <li>
                 <a className="foot__link" href={MOTOR} target="_blank" rel="noopener noreferrer">
                   Entrar a auditorías ↗
+                </a>
+              </li>
+              <li>
+                <a className="foot__link" href={TAP_ACCESO} target="_blank" rel="noopener noreferrer">
+                  Panel de TapReviews ↗
                 </a>
               </li>
               <li><a className="foot__link" href={`mailto:${CORREO}`}>{CORREO}</a></li>

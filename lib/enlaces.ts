@@ -9,6 +9,14 @@ export const TEL = process.env.NEXT_PUBLIC_WHATSAPP ?? "524611801622";
 export const MOTOR = process.env.NEXT_PUBLIC_AUDITORIAS_URL ?? AUDITORIAS.url;
 export const MOTOR_ACCESO = `${MOTOR}/acceso`;
 export const MOTOR_REGISTRO = `${MOTOR}/registro`;
+/* TapReviews. Mismo criterio que el motor: una sola definición, para que el
+ * enlace del pie y el del panel del comercio no puedan separarse.
+ *
+ * Este dominio va grabado en el chip de cada tarjeta NFC, así que cambiarlo no
+ * es editar un enlace: es dejar muertas las tarjetas ya entregadas. */
+export const TAP = process.env.NEXT_PUBLIC_TAPREVIEWS_URL ?? "https://tapreviews.apoumian.com";
+export const TAP_ACCESO = `${TAP}/comercio/acceso`;
+
 export const CORREO = process.env.NEXT_PUBLIC_EMAIL ?? "hola@apoumian.com";
 
 export const wa = (texto: string) => `https://wa.me/${TEL}?text=${encodeURIComponent(texto)}`;

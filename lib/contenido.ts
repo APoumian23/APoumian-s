@@ -305,6 +305,7 @@ export const AUDITORIAS = {
  *  cobrándose de verdad. */
 export const TAPREVIEWS = {
   nombre: "TapReviews",
+  url: "https://tapreviews.apoumian.com",
   que: "Tus clientes te dejan una reseña de Google en cinco segundos, acercando el teléfono a una tarjeta que vive en tu mostrador. Sin instalar nada, ni ellos ni tú.",
   porQueMensual:
     "La tarjeta es lo de menos: lo que se cobra cada mes es que alguien mida tus taps, te avise cuando entra una reseña mala y te entregue el reporte. Por eso el equipo va incluido y no se vende aparte.",
