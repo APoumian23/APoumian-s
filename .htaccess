@@ -52,8 +52,31 @@ ErrorDocument 404 /404.html
   ExpiresByType text/html               "access plus 0 seconds"
 </IfModule>
 
-# ── Higiene ─────────────────────────────────────────────────────────────────
-Options -Indexes
-<FilesMatch "\.(log|json|md|toml|lock)$">
+# ── El código fuente no se sirve ────────────────────────────────────────────
+# En `main` conviven el sitio compilado y el código que lo genera, porque el
+# despliegue de Hostinger copia la raíz del repositorio tal cual. Apache solo
+# esconde por omisión los archivos que empiezan con «.ht»: sin las reglas de
+# abajo, apoumian.com/.env.production se descargaría desde el navegador y
+# package.json revelaría cada dependencia y su versión a quien busque una
+# vulnerable.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(app|lib|public|servidor|node_modules|scripts)/ - [F,L]
+  RewriteRule ^\.(env|next|hallmark|git|publicado) - [F,L]
+</IfModule>
+
+# Se incluye ^\.ht para no depender de que el host lo bloquee por su cuenta:
+# casi todos lo hacen, pero servir este archivo sería regalar el mapa de
+# qué rutas se esconden y por qué.
+<FilesMatch "(^\.ht|^\.env|^\.publicado|\.(ts|tsx|sh|ya?ml|lock|json|md|toml|log)$)">
   Require all denied
 </FilesMatch>
+
+# tokens.css es la fuente del sistema de diseño; lo que sirve el sitio ya viene
+# compilado dentro de /_next/static/css.
+<Files "tokens.css">
+  Require all denied
+</Files>
+
+# ── Higiene ─────────────────────────────────────────────────────────────────
+Options -Indexes

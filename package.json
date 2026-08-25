@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start -p 3180",
     "lint": "next lint",
-    "publicar": "next build && rm -rf sitio && cp -R .next-build sitio && echo \"\\nListo. Sube el CONTENIDO de sitio/ a public_html\\n\""
+    "publicar": "./publicar.sh"
   },
   "dependencies": {
     "next": "15.5.4",
