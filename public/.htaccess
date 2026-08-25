@@ -1,0 +1,59 @@
+# Configuración de Apache para el sitio exportado de apoumian.com.
+#
+# Con `output: "export"` la opción `redirects()` de Next deja de existir: en
+# hosting compartido quien resuelve las URLs es Apache, y este archivo es su
+# única instrucción. Vive en `public/` para que Next lo copie a la exportación.
+
+# ── Redirecciones ───────────────────────────────────────────────────────────
+# /trabajo y /codigo existieron y se fundieron en /casos. Una URL ya publicada
+# no se deja morir en un 404: se redirige, para no perder a quien la tenga
+# guardada ni el posicionamiento que hubiera ganado.
+# Con `Redirect` la coincidencia es por prefijo, y /trabajo/ampa.webp —donde
+# viven las capturas de los casos— acabaría en /casos/ampa.webp. `RedirectMatch`
+# con ^...$ ata la regla a la ruta exacta y deja las imágenes en paz.
+RedirectMatch 301 ^/trabajo/?$ /casos/
+RedirectMatch 301 ^/codigo/?$  /casos/
+
+# ── Página de error ─────────────────────────────────────────────────────────
+# Sin esto, una ruta inexistente muestra el 404 genérico de Apache, sin la
+# marca ni la navegación del sitio.
+ErrorDocument 404 /404.html
+
+# ── HTTPS y dominio único ───────────────────────────────────────────────────
+# Servir el mismo contenido en http y https, o con y sin www, es contenido
+# duplicado a ojos de Google y divide el posicionamiento entre dos direcciones.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://apoumian.com/$1 [R=301,L]
+  RewriteCond %{HTTP_HOST} ^www\.apoumian\.com$ [NC]
+  RewriteRule ^(.*)$ https://apoumian.com/$1 [R=301,L]
+</IfModule>
+
+# ── Compresión ──────────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ── Caché ───────────────────────────────────────────────────────────────────
+# Next pone un hash en el nombre de cada archivo de /_next/, así que un cambio
+# genera un nombre nuevo: se pueden cachear un año sin miedo a servir viejo.
+# El HTML no lleva hash y debe revalidarse siempre, o un cambio de texto
+# tardaría días en verse.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+# ── Higiene ─────────────────────────────────────────────────────────────────
+Options -Indexes
+<FilesMatch "\.(log|json|md|toml|lock)$">
+  Require all denied
+</FilesMatch>

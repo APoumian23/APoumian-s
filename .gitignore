@@ -6,3 +6,8 @@ out
 .DS_Store
 *.tsbuildinfo
 next-env.d.ts
+
+# Exportación estática lista para subir (se regenera con `pnpm publicar`)
+sitio/
+.next-build/
+out/

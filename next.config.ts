@@ -11,18 +11,28 @@ const esBuild = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  /* /trabajo existió y se reemplazó por /codigo. Una URL que ya se publicó no se
-   * deja morir en un 404: se redirige, para no perder a quien la tenga guardada
-   * ni el posicionamiento que hubiera ganado. */
-  async redirects() {
-    /* /trabajo y /codigo existieron y se fundieron en /casos: las dos hacían
-     * lo mismo —probar el trabajo—, una con capturas y otra con código. Una
-     * URL publicada no se deja morir en un 404. */
-    return [
-      { source: "/trabajo", destination: "/casos", permanent: true },
-      { source: "/codigo", destination: "/casos", permanent: true },
-    ];
-  },
+
+  /* El sitio se publica en hosting compartido de Hostinger, que sirve archivos
+   * y PHP pero no ejecuta Node. `export` genera HTML plano: no hace falta un
+   * servidor encendido y el hosting que ya se paga alcanza.
+   *
+   * Lo que esto cuesta, para que nadie lo descubra a media urgencia:
+   *   - No puede haber rutas de API en Next. El formulario vive en
+   *     `public/contacto.php`, que Hostinger sí ejecuta.
+   *   - `redirects()` deja de aplicarse: las redirecciones viven en
+   *     `public/.htaccess`, que es quien manda en Apache.
+   *   - Las imágenes no se optimizan al vuelo. Por eso ya están en WebP. */
+  output: "export",
+
+  /* Apache sirve directorios, no extensiones: con esto cada ruta se escribe
+   * como `casos/index.html` y `apoumian.com/casos` funciona sin `.html`. */
+  trailingSlash: true,
+
+  /* El optimizador de imágenes de Next es un servicio en ejecución; en un
+   * sitio exportado no existe. `unoptimized` hace que <Image> emita la ruta
+   * tal cual, conservando ancho y alto para que no salte el layout. */
+  images: { unoptimized: true },
+
   distDir: esBuild ? ".next-build" : ".next",
   outputFileTracingRoot: path.join(process.cwd()),
 };
