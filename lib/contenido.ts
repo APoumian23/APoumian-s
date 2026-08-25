@@ -7,7 +7,18 @@
  *
  * `nombreLegal` en blanco hace que el aviso hable en genérico en vez de
  * inventar un nombre. Al darte de alta, se llena esto y se añade `domicilio`;
- * no hay que tocar la página. */
+ * no hay que tocar la página.
+ *
+ * AQUÍ NO VA "APoumian". Ese es el nombre comercial y ya aparece como tal en
+ * SITE.nombre. Lo que va aquí es:
+ *   - persona física → tu nombre y apellidos como los registra el SAT;
+ *   - sociedad → la razón social CON su tipo societario ("… S.A.S.",
+ *     "… S. de R.L. de C.V."), y solo una vez constituida.
+ *
+ * La diferencia no es formalismo: un nombre comercial no puede ser
+ * responsable de datos personales ante la ley, así que escribirlo aquí deja
+ * el aviso exactamente igual de incompleto que dejarlo vacío, pero con
+ * apariencia de estar resuelto. Eso es peor: nadie lo vuelve a revisar. */
 export const RESPONSABLE = {
   nombreLegal: "",
   domicilio: "",
