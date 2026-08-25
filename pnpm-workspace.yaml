@@ -1,0 +1,3 @@
+# sharp es el optimizador de imágenes de Next; su script de instalación es legítimo.
+allowBuilds:
+  sharp: true

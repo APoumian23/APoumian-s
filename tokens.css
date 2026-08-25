@@ -1,0 +1,129 @@
+/* APoumian Studio · sistema de diseño (multi-página)
+ * Hallmark · theme: studied-DNA (source: https://lexerus.com)
+ * El ADN prestado es la ESTRUCTURA: papel casi blanco, un solo acento, display
+ * grotesca enorme, etiquetas en mono, reveal por máscara de línea.
+ * El vestido sigue siendo la marca APoumian (Brandbook: #16223C / #C6952F / #F4EDE1),
+ * porque el isotipo es marino y oro — un acento rojo pelearía con el propio logo.
+ * ejes: claro / grotesca-neutra / cromático-ámbar ~80°
+ */
+
+:root {
+  /* — Superficies ————————————————————————————
+   * Vuelta a la paleta de marca: crema marfil, marino tinta y oro arena
+   * (Brandbook: #F4EDE1 / #16223C / #C6952F). La versión casi negra al modo de
+   * ancora se probó y se descartó; lo que se conservó de esa prueba es el
+   * ACLARADO PROGRESIVO con el scroll, que no depende del color. */
+  --color-paper:        oklch(97.6% 0.007 80);   /* casi blanco, tibio */
+  --color-paper-2:      oklch(95.0% 0.018 81);   /* crema marfil de marca */
+  --color-paper-3:      oklch(92.4% 0.020 80);
+
+  --color-surface-deep:   oklch(15.5% 0.032 264); /* marino profundizado */
+  --color-surface-deep-2: oklch(21.0% 0.036 264);
+
+  /* — Tinta —————————————————————————————————— */
+  --color-ink:          oklch(15.5% 0.032 264);
+  --color-ink-2:        oklch(37.0% 0.030 264);
+  --color-muted:        oklch(51.0% 0.024 264);
+
+  --color-ink-on-deep:   oklch(96.0% 0.010 80);
+  --color-ink-on-deep-2: oklch(80.0% 0.016 80);
+  --color-muted-on-deep: oklch(65.0% 0.020 82);
+
+  /* — Filetes y retícula ————————————————————— */
+  --color-rule:         oklch(86.0% 0.013 80);
+  --color-rule-2:       oklch(91.5% 0.010 80);
+  --color-rule-deep:    oklch(28.0% 0.030 264);
+  --color-grid:         oklch(93.0% 0.010 80);
+  --color-grid-deep:    oklch(22.0% 0.028 264);
+
+  /* — Acento: oro arena de marca ——————————————— */
+  --color-accent:       oklch(69.9% 0.128 81);   /* #C6952F */
+  --color-accent-deep:  oklch(48.0% 0.113 70);   /* texto y enlaces sobre claro */
+  --color-accent-lift:  oklch(78.0% 0.125 84);   /* sobre marino */
+  --color-accent-ink:   oklch(15.5% 0.032 264);
+  --color-focus:        oklch(52.0% 0.185 76);
+  --color-focus-deep:   oklch(80.0% 0.150 84);
+
+  /* — Estados de una verificación de auditoría ————————
+   * Mismo significado y matiz que el motor (`--pass: #2F7D52`,
+   * `--fail: #C23B36`) con la luminosidad subida para el marino. */
+  --color-estado-bien:  oklch(72.0% 0.115 150);
+  --color-estado-mal:   oklch(68.0% 0.150 28);
+  --color-estado-aviso: oklch(96.0% 0.010 80);
+  --color-estado-na:    oklch(52.0% 0.018 264);
+
+  /* Los mismos, para superficies claras: los de arriba dan 2.2:1 sobre papel.
+   * Verde 6.4:1 y rojo 7.3:1 sobre la banda crema. */
+  --color-estado-bien-claro: oklch(44.0% 0.105 156);
+  --color-estado-mal-claro:  oklch(44.0% 0.170 27);
+
+  /* — Estados de formulario ————————————————————— */
+  --color-error:        oklch(50.0% 0.170 27);
+  --color-error-deep:   oklch(74.0% 0.140 30);
+  --color-success:      oklch(50.0% 0.095 155);
+  --color-success-deep: oklch(78.0% 0.100 155);
+
+  /* — Tipografía ——————————————————————————— */
+  --font-display:  var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-body:     var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-label:    var(--font-mono), ui-monospace, monospace;   /* rol: etiquetas */
+  --font-wordmark: var(--font-bodoni), ui-serif, Georgia, serif; /* solo el wordmark */
+
+  /* Piso deliberado: el cuerpo de texto nunca baja de 16 px y --text-sm no baja
+     de 15. Por debajo de 14 el texto es hostil para quien no ve bien de cerca. */
+  --text-xs:   0.8125rem;  /* 13px · solo etiquetas en mayúsculas con tracking */
+  --text-sm:   0.9375rem;  /* 15px · pies, metadatos */
+  --text-base: 1.0625rem;  /* 17px · cuerpo */
+  --text-md:   1.1875rem;  /* 19px */
+  --text-lg:   1.4375rem;  /* 23px */
+  --text-xl:   1.8125rem;  /* 29px */
+  --text-2xl:  2.3125rem;
+  --text-3xl:  2.9375rem;
+  --text-4xl:  3.75rem;
+  --text-display:   clamp(2.5rem, 5.4vw, 5rem);
+  --text-display-s: clamp(2.25rem, 4vw, 3.75rem);
+
+  /* — Espaciado, base 4 pt ——————————————————— */
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+
+  --page-gutter: clamp(1.25rem, 5vw, 4rem);
+  --measure: 62ch;
+  --nav-h: 4.5rem;
+
+  --rule-hair: 1px;
+  --rule-bold: 2px;
+  --rule-slab: 6px;
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+
+  /* — Movimiento ————————————————————————— */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-mask:   cubic-bezier(0.22, 1, 0.36, 1);  /* el reveal por máscara del ADN */
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+  --dur-mask:  1100ms;
+
+  /* — Capas ————————————————————————————— */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-velo: 190;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+}

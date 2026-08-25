@@ -1,0 +1,35 @@
+[
+  {
+    "date": "2026-08-18",
+    "macrostructure": "Marquee Hero (multi-página)",
+    "theme": "studied-DNA",
+    "source": "https://ancora.company (superficie) + https://lexerus.com (estructura)",
+    "theme_axes": "dark / grotesca-neutra / chromatic-amber ~83",
+    "enrichment": "marquesina CSS + ilustraciones SVG a mano + capturas reales",
+    "nav": "N1b",
+    "footer": "Ft5",
+    "brief": "apoumian.com · inversión a base casi negra al modo de ancora, conservando el oro de marca; se rechazó su naranja #FF4715 y su Helvetica Neue LT Pro (de paga)"
+  },
+  {
+    "date": "2026-08-17",
+    "macrostructure": "Marquee Hero (multi-página)",
+    "theme": "studied-DNA",
+    "source": "https://lexerus.com",
+    "theme_axes": "light / grotesca-neutra / chromatic-amber ~80",
+    "enrichment": "capturas reales de 3 sitios en vivo",
+    "nav": "N1b",
+    "footer": "Ft5",
+    "brief": "apoumian.com · 11 páginas con el ADN de lexerus.com; productos propios (auditorías, TapReviews) e ilustraciones SVG animadas a mano"
+  },
+  {
+    "date": "2026-08-17",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / chromatic-amber ~81",
+    "vibe": "marino tinta, oro arena, papel marfil, taller",
+    "enrichment": "none (tipografía + activos de marca reales del cliente)",
+    "nav": "N9",
+    "footer": "Ft1",
+    "brief": "APoumian Studio · apoumian.com · landing de servicios para pymes (Celaya, Gto.)"
+  }
+]

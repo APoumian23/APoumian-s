@@ -1,0 +1,24 @@
+import type { MetadataRoute } from "next";
+import { CASOS, DISCIPLINAS, SITE } from "@/lib/contenido";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const ahora = new Date();
+  const rutas = [
+    { p: "", pr: 1 },
+    { p: "/servicios", pr: 0.9 },
+    ...DISCIPLINAS.map((d) => ({ p: `/servicios/${d.slug}`, pr: 0.8 })),
+    { p: "/auditorias", pr: 0.9 },
+    { p: "/tapreviews", pr: 0.9 },
+    { p: "/casos", pr: 0.9 },
+    ...CASOS.map((c) => ({ p: `/casos/${c.slug}`, pr: 0.7 })),
+    { p: "/estudio", pr: 0.6 },
+    { p: "/contacto", pr: 0.8 },
+    { p: "/privacidad", pr: 0.3 },
+  ];
+  return rutas.map(({ p, pr }) => ({
+    url: `${SITE.dominio}${p}`,
+    lastModified: ahora,
+    changeFrequency: "monthly" as const,
+    priority: pr,
+  }));
+}
