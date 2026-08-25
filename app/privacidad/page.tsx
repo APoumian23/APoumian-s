@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE } from "@/lib/contenido";
+import { RESPONSABLE, SITE } from "@/lib/contenido";
 import { CORREO, MOTOR } from "@/lib/enlaces";
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 /** Fecha de la última revisión. Se escribe a mano: un aviso que dice
  *  "actualizado hoy" cada vez que se recarga la página no acredita nada. */
-const ACTUALIZADO = "19 de agosto de 2026";
+const ACTUALIZADO = "25 de agosto de 2026";
 
 export default function Privacidad() {
   return (
@@ -34,14 +34,20 @@ export default function Privacidad() {
         <div className="wrap wrap--narrow legal">
           <h2>Quién es responsable de tus datos</h2>
           <p>
-            {SITE.nombre}, con domicilio en {SITE.ciudad}, {SITE.pais}, es responsable del
+            <strong>{SITE.nombre}</strong> es el nombre comercial bajo el que
+            {RESPONSABLE.nombreLegal
+              ? ` opera ${RESPONSABLE.nombreLegal}, persona física`
+              : " opera una persona física"}{" "}
+            establecida en {RESPONSABLE.ciudad}, {RESPONSABLE.pais}, responsable del
             tratamiento de los datos personales que nos proporciones a través de este sitio, en
             los términos de la Ley Federal de Protección de Datos Personales en Posesión de los
             Particulares.
           </p>
-          <p className="legal__pend">
-            Pendiente: domicilio fiscal completo y, si aplica, la razón social registrada ante el
-            SAT. Sin ese dato el aviso está incompleto para efectos legales.
+          <p>
+            Para cualquier asunto relacionado con tus datos —incluidas notificaciones formales—
+            el medio de contacto es <a className="link" href={`mailto:${CORREO}`}>{CORREO}</a>.
+            Si necesitas nuestro domicilio completo por escrito, lo proporcionamos por ese mismo
+            medio a quien lo solicite.
           </p>
 
           <h2>Qué datos recabamos</h2>

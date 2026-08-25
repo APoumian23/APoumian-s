@@ -1,3 +1,20 @@
+/* Quién responde legalmente por los datos que recibe el sitio.
+ *
+ * Sin alta en el SAT no hay razón social ni domicilio fiscal, así que el
+ * responsable es una persona física y no la marca: "APoumian Studio" es un
+ * nombre comercial, y un nombre comercial no puede ser responsable de nada
+ * ante la ley. Poner solo la marca deja el aviso sin sujeto.
+ *
+ * `nombreLegal` en blanco hace que el aviso hable en genérico en vez de
+ * inventar un nombre. Al darte de alta, se llena esto y se añade `domicilio`;
+ * no hay que tocar la página. */
+export const RESPONSABLE = {
+  nombreLegal: "",
+  domicilio: "",
+  ciudad: "Celaya, Guanajuato",
+  pais: "México",
+} as const;
+
 export const SITE = {
   nombre: "APoumian Studio",
   dominio: "https://apoumian.com",
