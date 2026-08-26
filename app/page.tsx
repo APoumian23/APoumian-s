@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ALCANCE, AUDITORIAS, CIFRAS, MUESTRAS, DISCIPLINAS, SITE, TAPREVIEWS, TRABAJO } from "@/lib/contenido";
+import { ALCANCE, AUDITORIAS, CIFRAS, CON_CAPTURA, DISCIPLINAS, SITE, TAPREVIEWS, TRABAJO } from "@/lib/contenido";
 import { CORREO, TEL, WA_GENERAL } from "@/lib/enlaces";
 import Marquesina from "./componentes/Marquesina";
 import Revela from "./componentes/Revela";
@@ -19,6 +19,10 @@ const jsonLd = {
 };
 
 const GRUPOS = [...new Set(ALCANCE.map((x) => x.grupo))];
+
+/* La que abre grande: es la única con recorte para celular, y sin ese recorte
+   una captura densa a 375px se vuelve ilegible. */
+const DESTACADA = CON_CAPTURA.find((x) => x.capturaMovil) ?? CON_CAPTURA[0];
 
 export default function Inicio() {
   const enLinea = TRABAJO.filter((t) => t.sitio);
@@ -130,19 +134,19 @@ export default function Inicio() {
           {/* Una grande y dos chicas, igual que las capturas del hero: es el
               patrón que el sitio ya usa para enseñar prueba, y repetirlo evita
               inventar una forma nueva que el lector tenga que aprender. */}
+          {/* Tres capturas, no las cinco: la portada enseña que existe producto
+              y /casos enseña todo. Salen de la misma lista que /casos, así que
+              agregar una aparece en los dos lados sin tocar ninguna página. */}
           <div className="muestras">
             <figure className="muestra muestra--grande">
               <picture>
-                {MUESTRAS[0].movil && (
-                  <source media="(min-width: 40rem)" srcSet={MUESTRAS[0].src} />
+                {DESTACADA.capturaMovil && (
+                  <source media="(min-width: 40rem)" srcSet={DESTACADA.captura} />
                 )}
-                {/* El tablero completo a 375px queda a escala 0.21: el texto de
-                    13px se vuelve de 2.7px. En pantalla angosta va un recorte de
-                    los indicadores, que sí se lee y pesa 11 KB en vez de 74. */}
                 <img
                   className="muestra__img"
-                  src={MUESTRAS[0].movil ?? MUESTRAS[0].src}
-                  alt={MUESTRAS[0].alt}
+                  src={DESTACADA.capturaMovil ?? DESTACADA.captura}
+                  alt={DESTACADA.capturaAlt}
                   width={1600}
                   height={1000}
                   loading="lazy"
@@ -150,25 +154,25 @@ export default function Inicio() {
                 />
               </picture>
               <figcaption className="muestra__cap label">
-                <span>{MUESTRAS[0].pie} · datos de demostración</span>
+                <span>{DESTACADA.titulo} · datos de demostración</span>
                 <Link className="link" href="/casos/#sis-t">Ver los {ALCANCE.length} →</Link>
               </figcaption>
             </figure>
 
             <div className="muestras__par">
-              {MUESTRAS.slice(1).map((m) => (
+              {CON_CAPTURA.filter((m) => m.id !== DESTACADA.id).slice(0, 2).map((m) => (
                 <figure className="muestra" key={m.id}>
                   <img
                     className="muestra__img"
-                    src={m.src}
-                    alt={m.alt}
-                    width={1600}
-                    height={1000}
+                    src={m.captura}
+                    alt={m.capturaAlt}
+                    width={1400}
+                    height={875}
                     loading="lazy"
                     decoding="async"
                   />
                   <figcaption className="muestra__cap label">
-                    <span>{m.pie}</span>
+                    <span>{m.titulo}</span>
                   </figcaption>
                 </figure>
               ))}

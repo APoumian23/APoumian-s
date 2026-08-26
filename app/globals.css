@@ -1349,3 +1349,11 @@ a { color: inherit; text-decoration: none; }
   align-items: baseline; justify-content: space-between;
   margin-top: var(--space-sm); color: var(--color-muted);
 }
+
+/* ── Galería de capturas ────────────────────────────────────────────────────
+ * Dos columnas desde tableta. En una sola, cada captura ocupa demasiado alto y
+ * el visitante deja de bajar antes de ver la tercera. */
+.galeria { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); margin-bottom: var(--space-md); }
+@media (min-width: 48rem) { .galeria { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xl); } }
+.galeria__i { margin: 0; }
+.galeria__nota { color: var(--color-muted); font-size: var(--text-sm); max-width: 62ch; margin: 0 0 var(--space-2xl); }

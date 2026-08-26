@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ALCANCE, AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, TAPREVIEWS } from "@/lib/contenido";
+import { ALCANCE, CON_CAPTURA, AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, TAPREVIEWS } from "@/lib/contenido";
 import Rejilla from "../componentes/Rejilla";
 
 export const metadata: Metadata = {
@@ -106,6 +106,36 @@ export default function Casos() {
               cada uno. Los clientes van sin nombre: ponerlo es decisión suya, no nuestra.
             </p>
           </header>
+
+          {/* Las capturas van juntas y antes de las fichas, no una dentro de cada
+              tarjeta: solo cinco de los doce sistemas tienen imagen, y una
+              rejilla con siete huecos se lee peor que ninguna imagen.
+
+              Todas llevan datos de demostración y el nombre del cliente borrado
+              antes de disparar la foto. */}
+          <div className="galeria">
+            {CON_CAPTURA.map((x) => (
+              <figure className="galeria__i" key={x.id}>
+                <img
+                  className="muestra__img"
+                  src={x.captura}
+                  alt={x.capturaAlt}
+                  width={1400}
+                  height={875}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption className="muestra__cap label">
+                  <span>{x.titulo}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className="galeria__nota">
+            {CON_CAPTURA.length} de los {ALCANCE.length}, con datos inventados. Los nombres de los clientes se borran
+            antes de tomar la foto: enseñar la pantalla de un cliente real sería un problema
+            para él, no una prueba para nosotros.
+          </p>
 
           {GRUPOS.map((grupo) => (
             <div key={grupo} className="grupo">

@@ -428,40 +428,11 @@ export const TAPREVIEWS = {
  * Los datos salen de las notas de cada proyecto en el vault. Quedan fuera a
  * propósito los que están en plan o en diseño —no se enseña lo que no se ha
  * escrito— y los de práctica. */
-/* Capturas de los sistemas corriendo, con datos de demostración.
- *
- * Doce nombres prueban que existe trabajo; una captura prueba que existe
- * producto. Todas llevan datos inventados y el nombre del cliente borrado
- * antes de disparar la foto: enseñar la pantalla de un cliente real sería un
- * problema para él, no una prueba para nosotros.
- *
- * El procedimiento está en el vault, en `capturas/LEEME.md`. */
-export const MUESTRAS = [
-  {
-    id: "autolavados",
-    src: "/sistemas/autolavados-tablero.webp",
-    movil: "/sistemas/autolavados-detalle.webp",
-    pie: "Gestión para autolavados",
-    alt: "Tablero de un sistema de gestión para autolavados: ingresos del día, órdenes, reservas próximas con vehículo y placa, y membresías por vencer.",
-  },
-  {
-    id: "erp-escolar",
-    src: "/sistemas/erp-escolar.webp",
-    pie: "ERP escolar",
-    alt: "Portal administrativo de un ERP escolar: alumnos inscritos, maestros activos, adeudos abiertos, corte del día por método de pago y próximos vencimientos de colegiatura.",
-  },
-  {
-    id: "tienda",
-    src: "/sistemas/tienda-inventario.webp",
-    pie: "Inventario de una tienda",
-    alt: "Inventario de una tienda en línea: variantes activas, unidades en bodega, valor del inventario al costo y movimientos recientes por venta.",
-  },
-] as const;
-
-
 export const ALCANCE = [
   {
     id: "erp-escolar",
+    captura: "/sistemas/erp-escolar.webp",
+    capturaAlt: "Portal administrativo del ERP escolar: alumnos inscritos, maestros activos, adeudos abiertos y próximos vencimientos de colegiatura.",
     grupo: "Gestión y operación",
     titulo: "ERP escolar",
     sector: "Colegio",
@@ -478,6 +449,8 @@ export const ALCANCE = [
   },
   {
     id: "ventas-calle",
+    captura: "/sistemas/ventas-calle.webp",
+    capturaAlt: "Jerarquía del equipo de ventas: dirección, gerentes por región y supervisores por ciudad, con sus subordinados y saldos.",
     grupo: "Gestión y operación",
     titulo: "Ventas y vendedores en calle",
     sector: "Distribución",
@@ -494,6 +467,9 @@ export const ALCANCE = [
   },
   {
     id: "autolavados",
+    captura: "/sistemas/autolavados-tablero.webp",
+    capturaAlt: "Tablero del autolavado: ingresos del día, órdenes, reservas próximas con vehículo y placa, y membresías por vencer.",
+    capturaMovil: "/sistemas/autolavados-detalle.webp",
     grupo: "Gestión y operación",
     titulo: "Gestión para autolavados",
     sector: "Producto propio",
@@ -518,6 +494,8 @@ export const ALCANCE = [
   },
   {
     id: "tienda-operacion",
+    captura: "/sistemas/tienda-inventario.webp",
+    capturaAlt: "Inventario de la tienda: variantes activas, unidades en bodega, valor al costo y movimientos recientes por venta.",
     grupo: "Tiendas en línea",
     titulo: "Tienda con operación completa",
     sector: "Maquillaje, menudeo y mayoreo",
@@ -526,6 +504,8 @@ export const ALCANCE = [
   },
   {
     id: "tienda-moda",
+    captura: "/sistemas/tienda-moda.webp",
+    capturaAlt: "Resumen de la tienda: productos activos, piezas en inventario, piezas con poco stock y agotados.",
     grupo: "Tiendas en línea",
     titulo: "Tienda de moda y tecnología",
     sector: "Streetwear, perfumes y electrónica",
@@ -689,6 +669,34 @@ export const CASOS = [
     ahora: "Ven su ganancia neta por producto, no nada más sus ventas.",
   },
 ] as const;
+
+
+/* Los sistemas que ya tienen captura.
+ *
+ * `ALCANCE` va `as const`, así que cada ficha tiene su tipo literal y solo
+ * algunas llevan `captura` o `capturaMovil`. Filtrar sobre eso obliga a pelear
+ * con la inferencia en cada uso; se le da una forma explícita una sola vez y
+ * las páginas la consumen sin ceremonia. */
+export type Muestra = {
+  id: string;
+  titulo: string;
+  captura: string;
+  capturaAlt: string;
+  /** Recorte legible para pantalla angosta. Solo lo tiene la que va grande. */
+  capturaMovil?: string;
+};
+
+export const CON_CAPTURA: Muestra[] = ALCANCE.flatMap((x) =>
+  "captura" in x
+    ? [{
+        id: x.id,
+        titulo: x.titulo,
+        captura: x.captura,
+        capturaAlt: x.capturaAlt,
+        ...("capturaMovil" in x ? { capturaMovil: x.capturaMovil } : {}),
+      }]
+    : [],
+);
 
 
 /* Las cifras se cuentan, no se escriben.
