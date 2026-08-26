@@ -278,12 +278,6 @@ export const NAV = [
 ] as const;
 
 /** Cifras del sello del héroe. Todas verificables — ninguna inventada. */
-export const CIFRAS = [
-  { n: "4", q: "disciplinas bajo un mismo techo" },
-  { n: "20", q: "servicios en catálogo" },
-  { n: "10", q: "áreas de especialidad" },
-  { n: "3", q: "sitios de clientes en línea" },
-];
 
 /** Producto de auditoría. Vive en su propio subdominio. */
 export const AUDITORIAS = {
@@ -664,3 +658,19 @@ export const CASOS = [
     ahora: "Ven su ganancia neta por producto, no nada más sus ventas.",
   },
 ] as const;
+
+
+/* Las cifras se cuentan, no se escriben.
+ *
+ * Estaban a mano y ya habían empezado a mentir: decían diez áreas y tres
+ * sitios mientras el portafolio crecía debajo. Un número inflado se perdona;
+ * uno que se quedó corto hace que el visitante piense que es todo lo que hay.
+ *
+ * Al derivarlas de los mismos arreglos que pinta el sitio, añadir un caso o un
+ * sistema actualiza la portada sin que nadie se acuerde de venir aquí. */
+export const CIFRAS = [
+  { n: String(DISCIPLINAS.length), q: "disciplinas bajo un mismo techo" },
+  { n: String(DISCIPLINAS.reduce((t, d) => t + d.servicios.length, 0)), q: "servicios en catálogo" },
+  { n: String(ALCANCE.length), q: "sistemas a la medida", href: "/casos/#sis-t" },
+  { n: String(CASOS.length), q: "sitios de clientes en línea", href: "/casos/" },
+];

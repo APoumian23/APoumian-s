@@ -86,7 +86,12 @@ export default function Inicio() {
           <dl className="stats">
             {CIFRAS.map((c) => (
               <div key={c.q}>
-                <dd className="stat__n">{c.n}</dd>
+                <dd className="stat__n">
+                    {/* Las dos cifras comprobables llevan a donde se comprueban:
+                        decir "doce sistemas" y dejar al visitante buscándolos es
+                        pedirle que confíe; enlazarlos es enseñárselos. */}
+                    {c.href ? <Link className="stat__l" href={c.href}>{c.n}</Link> : c.n}
+                  </dd>
                 <dt className="stat__q">{c.q}</dt>
               </div>
             ))}
