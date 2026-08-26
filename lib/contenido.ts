@@ -459,11 +459,23 @@ export const ALCANCE = [
   },
   {
     id: "campo",
+    captura: "/sistemas/campo-cotizador.webp",
+    capturaAlt: "Cotizador de servicios en campo: catálogo por categoría con precios, y desglose con costos internos de insumos, traslado y depreciación para calcular el margen real.",
     grupo: "Gestión y operación",
     titulo: "Operación en campo",
     sector: "Limpieza y fumigación industrial",
     estado: "En construcción",
     que: "Aplicación que funciona sin señal y sincroniza al volver: agenda, servicios en sitio, cotizaciones, empleados, maquinaria y finanzas. En campo no siempre hay internet.",
+  },
+  {
+    id: "pos-comida",
+    captura: "/sistemas/pos-polleria.webp",
+    capturaAlt: "Punto de venta de comida: catálogo por categoría, canal de venta —local, WhatsApp, Uber, DiDi, Rappi— y el pedido en curso con su total.",
+    grupo: "Gestión y operación",
+    titulo: "Punto de venta para comida",
+    sector: "Pollería",
+    estado: "Entregado",
+    que: "Cobra en mostrador y por reparto en la misma pantalla: el pedido se marca como local, WhatsApp, Uber, DiDi o Rappi, e imprime el ticket en la impresora de tickets por Bluetooth.",
   },
   {
     id: "autolavados",
@@ -514,6 +526,8 @@ export const ALCANCE = [
   },
   {
     id: "reservas-turismo",
+    captura: "/sistemas/tours-reservas.webp",
+    capturaAlt: "Portada del sitio de tours: foto de la bahía, selector de idioma, botón de reservar y cotización por WhatsApp.",
     grupo: "Sitios que hacen algo más",
     titulo: "Reservas con anticipo",
     sector: "Turismo náutico",
