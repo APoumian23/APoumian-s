@@ -121,8 +121,8 @@ export default function Casos() {
                 <Link className="galeria__l" href={`/casos/sistemas/${x.id}`}>
                   <img
                     className="muestra__img"
-                    src={x.captura}
-                    alt={x.capturaAlt}
+                    src={x.pantallas[0].src}
+                    alt={x.pantallas[0].alt}
                     width={1400}
                     height={875}
                     loading="lazy"

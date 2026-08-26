@@ -1362,3 +1362,8 @@ a { color: inherit; text-decoration: none; }
  * descubre que se puede entrar. */
 .galeria__l { display: block; border-radius: var(--radius-sm); transition: transform var(--dur-short) var(--ease-out); }
 .galeria__l:hover, .galeria__l:focus-visible { transform: translateY(-2px); }
+
+/* En la página de un solo sistema las capturas van a lo ancho: son una o dos,
+ * y a media columna se pierde el detalle que justifica enseñarlas. */
+.galeria--una { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 48rem) { .galeria--una { grid-template-columns: minmax(0, 1fr); } }

@@ -431,8 +431,19 @@ export const TAPREVIEWS = {
 export const ALCANCE = [
   {
     id: "erp-escolar",
-    captura: "/sistemas/erp-escolar.webp",
-    capturaAlt: "Portal administrativo del ERP escolar: alumnos inscritos, maestros activos, adeudos abiertos y próximos vencimientos de colegiatura.",
+    hace: [
+      "Tres portales con acceso por rol: administración, maestros y padres",
+      "Alumnos con foto, maestros, tutores, ciclos, grados, grupos y materias",
+      "Cobros por ciclo, adeudos, pagos parciales, condonaciones y servicios prepagados",
+      "Facturación CFDI 4.0 ligada al pago y al padre titular fiscal",
+      "Inventario de uniformes con talla, existencia y asignación por alumno",
+      "Corte diario, ingresos, morosos y listas por grupo, con boletas y kardex en PDF",
+      "Carga de alumnos y maestros desde Excel, con plantilla descargable",
+      "Los maestros capturan calificaciones; los padres consultan estado de cuenta y pagan",
+    ],
+    pantallas: [
+      { src: "/sistemas/erp-escolar.webp", alt: "Portal administrativo del ERP escolar: alumnos inscritos, maestros activos, adeudos abiertos y próximos vencimientos de colegiatura." },
+    ],
     grupo: "Gestión y operación",
     titulo: "ERP escolar",
     sector: "Colegio",
@@ -449,10 +460,20 @@ export const ALCANCE = [
   },
   {
     id: "ventas-calle",
-    captura: "/sistemas/ventas-calle.webp",
-    capturaAlt: "Jerarquía del equipo de ventas: dirección, gerentes por región y supervisores por ciudad, con sus subordinados y saldos.",
-    captura2: "/sistemas/ventas-calle-2.webp",
-    captura2Alt: "Inventario por zona: Apaseo el Grande, Celaya, Cortazar, Guanajuato Capital, Salamanca y Uriangato, cada una con sus vendedores y sus unidades en existencia.",
+    hace: [
+      "Zonas con mensajes internos y jerarquía completa hasta subgerente",
+      "Vendedores con su detalle y seguimiento de desempeño",
+      "Registro y captura de ventas en la calle",
+      "Inventario por zona con movimientos auditables",
+      "Crédito y fiado por cliente, con aplicación de pagos",
+      "Flujo de aprobaciones para lo que necesita autorización",
+      "Informes con gráficas",
+      "Bitácora de auditoría: quién movió qué y cuándo",
+    ],
+    pantallas: [
+      { src: "/sistemas/ventas-calle.webp", alt: "Jerarquía del equipo de ventas: dirección, gerentes por región y supervisores por ciudad, con sus subordinados y saldos." },
+      { src: "/sistemas/ventas-calle-2.webp", alt: "Inventario por zona: Apaseo el Grande, Celaya, Cortazar, Guanajuato Capital, Salamanca y Uriangato, cada una con sus vendedores y sus unidades en existencia." },
+    ],
     grupo: "Gestión y operación",
     titulo: "Ventas y vendedores en calle",
     sector: "Distribución",
@@ -461,8 +482,19 @@ export const ALCANCE = [
   },
   {
     id: "campo",
-    captura: "/sistemas/campo-cotizador.webp",
-    capturaAlt: "Cotizador de servicios en campo: catálogo por categoría con precios, y desglose con costos internos de insumos, traslado y depreciación para calcular el margen real.",
+    hace: [
+      "Agenda de servicios con hora de llegada, coordenadas y horas reales trabajadas",
+      "Cotizador de catálogo y de fumigación, con cálculo por metro cuadrado, plaga y nivel de infestación",
+      "Fotos de antes y después con comparativa, y firma del cliente en pantalla",
+      "Directorio de clientes con historial y total gastado",
+      "Empleados con comisión por porcentaje o monto fijo, y su estado de pago",
+      "Maquinaria con depreciación por hora, vida útil y costo real por hora",
+      "Gastos de gasolina, insumos y depreciación, con reportes",
+      "Funciona sin señal y sincroniza al volver",
+    ],
+    pantallas: [
+      { src: "/sistemas/campo-cotizador.webp", alt: "Cotizador de servicios en campo: catálogo por categoría con precios, y desglose con costos internos de insumos, traslado y depreciación para calcular el margen real." },
+    ],
     grupo: "Gestión y operación",
     titulo: "Operación en campo",
     sector: "Limpieza y fumigación industrial",
@@ -471,8 +503,19 @@ export const ALCANCE = [
   },
   {
     id: "pos-comida",
-    captura: "/sistemas/pos-polleria.webp",
-    capturaAlt: "Punto de venta de comida: catálogo por categoría, canal de venta —local, WhatsApp, Uber, DiDi, Rappi— y el pedido en curso con su total.",
+    hace: [
+      "Búsqueda, categorías y carrito en tiempo real",
+      "Cinco canales marcados por pedido: mostrador, WhatsApp, Uber Eats, DiDi Food y Rappi",
+      "Impresión en impresora térmica por Bluetooth, de 58 y 80 milímetros",
+      "Impresión por navegador cuando no hay Bluetooth",
+      "Reportes por canal, top de productos y exportación a CSV",
+      "Catálogo editable desde la misma pantalla",
+      "Respaldo y restauración en un archivo",
+      "Funciona en celular, tableta y computadora, sin servidor",
+    ],
+    pantallas: [
+      { src: "/sistemas/pos-polleria.webp", alt: "Punto de venta de comida: catálogo por categoría, canal de venta —local, WhatsApp, Uber, DiDi, Rappi— y el pedido en curso con su total." },
+    ],
     grupo: "Gestión y operación",
     titulo: "Punto de venta para comida",
     sector: "Pollería",
@@ -481,11 +524,20 @@ export const ALCANCE = [
   },
   {
     id: "autolavados",
-    captura: "/sistemas/autolavados-tablero.webp",
-    capturaAlt: "Tablero del autolavado: ingresos del día, órdenes, reservas próximas con vehículo y placa, y membresías por vencer.",
-    captura2: "/sistemas/autolavados-2.webp",
-    captura2Alt: "Punto de venta del autolavado: catálogo de servicios con duración y precio, y la orden en curso con cliente, vehículo, promoción y método de pago.",
-    capturaMovil: "/sistemas/autolavados-detalle.webp",
+    hace: [
+      "Punto de venta con folio, pagos divididos entre efectivo, tarjeta y transferencia",
+      "Clientes con sus vehículos: placa, marca, modelo, y en qué va cada uno",
+      "Agenda diaria con seis estados, del apartado al no-show",
+      "Membresías limitadas o ilimitadas, por semana, mes o año, con cobertura por servicio",
+      "Promociones y recompensas por puntos",
+      "Turnos, asistencia del personal y gastos por categoría",
+      "Reportes con exportación a Excel y PDF",
+      "Un negocio por organización, cada uno con su plan y su periodo de prueba",
+    ],
+    pantallas: [
+      { src: "/sistemas/autolavados-tablero.webp", alt: "Tablero del autolavado: ingresos del día, órdenes, reservas próximas con vehículo y placa, y membresías por vencer.", movil: "/sistemas/autolavados-detalle.webp" },
+      { src: "/sistemas/autolavados-2.webp", alt: "Punto de venta del autolavado: catálogo de servicios con duración y precio, y la orden en curso con cliente, vehículo, promoción y método de pago." },
+    ],
     grupo: "Gestión y operación",
     titulo: "Gestión para autolavados",
     sector: "Producto propio",
@@ -510,8 +562,19 @@ export const ALCANCE = [
   },
   {
     id: "tienda-operacion",
-    captura: "/sistemas/tienda-inventario.webp",
-    capturaAlt: "Inventario de la tienda: variantes activas, unidades en bodega, valor al costo y movimientos recientes por venta.",
+    hace: [
+      "Precio por volumen que cambia en vivo según lo que lleve el carrito",
+      "Cobro con Stripe, transferencia SPEI y OXXO, con confirmación que descuenta existencias",
+      "Cuenta del cliente con sus pedidos, guía de envío, direcciones y perfil",
+      "Punto de venta para el mostrador, con creación de cliente y ajuste de precio",
+      "Un mismo inventario para la tienda en línea y el mostrador",
+      "Comisión por vendedor con cinco reglas, sueldo base y objetivo mensual",
+      "Cierre de nómina automático",
+      "Cuatro roles: administrador, vendedor, almacenista y cliente",
+    ],
+    pantallas: [
+      { src: "/sistemas/tienda-inventario.webp", alt: "Inventario de la tienda: variantes activas, unidades en bodega, valor al costo y movimientos recientes por venta." },
+    ],
     grupo: "Tiendas en línea",
     titulo: "Tienda con operación completa",
     sector: "Maquillaje, menudeo y mayoreo",
@@ -520,8 +583,18 @@ export const ALCANCE = [
   },
   {
     id: "tienda-moda",
-    captura: "/sistemas/tienda-moda.webp",
-    capturaAlt: "Resumen de la tienda: productos activos, piezas en inventario, piezas con poco stock y agotados.",
+    hace: [
+      "Catálogo por categoría y marca, con variantes e imágenes por producto",
+      "Buscador, ofertas, carrito y pago",
+      "Seguimiento del pedido por código, sin necesidad de cuenta",
+      "Inventario con movimientos auditables",
+      "Cupones, promociones y banners de portada",
+      "Envíos por zona",
+      "Panel para productos, pedidos, cupones, banners, envíos e imágenes",
+    ],
+    pantallas: [
+      { src: "/sistemas/tienda-moda.webp", alt: "Resumen de la tienda: productos activos, piezas en inventario, piezas con poco stock y agotados." },
+    ],
     grupo: "Tiendas en línea",
     titulo: "Tienda de moda y tecnología",
     sector: "Streetwear, perfumes y electrónica",
@@ -530,8 +603,18 @@ export const ALCANCE = [
   },
   {
     id: "reservas-turismo",
-    captura: "/sistemas/tours-reservas.webp",
-    capturaAlt: "Portada del sitio de tours: foto de la bahía, selector de idioma, botón de reservar y cotización por WhatsApp.",
+    hace: [
+      "Sitio en español e inglés: tours, playas, galería y contacto",
+      "Reserva en línea y consulta del estado por código",
+      "Cobro del anticipo con Mercado Pago y Stripe",
+      "Disponibilidad real: reglas de horario y bloqueo de fechas",
+      "Lanchas, playas y puntos de embarque como catálogo",
+      "Cupones con alcance por tour",
+      "Panel con agenda, reservas, tours, cupones y contenido",
+    ],
+    pantallas: [
+      { src: "/sistemas/tours-reservas.webp", alt: "Portada del sitio de tours: foto de la bahía, selector de idioma, botón de reservar y cotización por WhatsApp." },
+    ],
     grupo: "Sitios que hacen algo más",
     titulo: "Reservas con anticipo",
     sector: "Turismo náutico",
@@ -689,12 +772,19 @@ export const CASOS = [
 ] as const;
 
 
-/* Los sistemas que ya tienen captura.
+/* Los sistemas que ya tienen pantallas capturadas.
  *
  * `ALCANCE` va `as const`, así que cada ficha tiene su tipo literal y solo
- * algunas llevan `captura` o `capturaMovil`. Filtrar sobre eso obliga a pelear
- * con la inferencia en cada uso; se le da una forma explícita una sola vez y
- * las páginas la consumen sin ceremonia. */
+ * algunas llevan `pantallas`. Filtrar sobre eso obliga a pelear con la
+ * inferencia en cada uso; se le da una forma explícita una vez y las páginas
+ * la consumen sin ceremonia. */
+export type Pantalla = {
+  src: string;
+  alt: string;
+  /** Recorte legible para pantalla angosta. Solo la que va grande lo necesita. */
+  movil?: string;
+};
+
 export type Muestra = {
   id: string;
   titulo: string;
@@ -702,27 +792,21 @@ export type Muestra = {
   estado: string;
   /** Qué resuelve. Es lo que un prospecto lee para reconocer su propio caso. */
   que: string;
-  captura: string;
-  capturaAlt: string;
-  /** Recorte legible para pantalla angosta. Solo lo tiene la que va grande. */
-  capturaMovil?: string;
-  /** Segunda pantalla del mismo sistema, para su página de detalle. */
-  captura2?: string;
-  captura2Alt?: string;
+  /** Qué hace por dentro. Sale de la nota del proyecto en el vault. */
+  hace: readonly string[];
+  pantallas: readonly Pantalla[];
 };
 
 export const CON_CAPTURA: Muestra[] = ALCANCE.flatMap((x) =>
-  "captura" in x
+  "pantallas" in x
     ? [{
         id: x.id,
         titulo: x.titulo,
         sector: x.sector,
         estado: x.estado,
         que: x.que,
-        captura: x.captura,
-        capturaAlt: x.capturaAlt,
-        ...("capturaMovil" in x ? { capturaMovil: x.capturaMovil } : {}),
-        ...("captura2" in x ? { captura2: x.captura2, captura2Alt: x.captura2Alt } : {}),
+        hace: "hace" in x ? x.hace : [],
+        pantallas: x.pantallas,
       }]
     : [],
 );

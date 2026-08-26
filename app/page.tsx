@@ -22,7 +22,7 @@ const GRUPOS = [...new Set(ALCANCE.map((x) => x.grupo))];
 
 /* La que abre grande: es la única con recorte para celular, y sin ese recorte
    una captura densa a 375px se vuelve ilegible. */
-const DESTACADA = CON_CAPTURA.find((x) => x.capturaMovil) ?? CON_CAPTURA[0];
+const DESTACADA = CON_CAPTURA.find((x) => x.pantallas[0].movil) ?? CON_CAPTURA[0];
 
 export default function Inicio() {
   const enLinea = TRABAJO.filter((t) => t.sitio);
@@ -140,13 +140,13 @@ export default function Inicio() {
           <div className="muestras">
             <figure className="muestra muestra--grande">
               <picture>
-                {DESTACADA.capturaMovil && (
-                  <source media="(min-width: 40rem)" srcSet={DESTACADA.captura} />
+                {DESTACADA.pantallas[0].movil && (
+                  <source media="(min-width: 40rem)" srcSet={DESTACADA.pantallas[0].src} />
                 )}
                 <img
                   className="muestra__img"
-                  src={DESTACADA.capturaMovil ?? DESTACADA.captura}
-                  alt={DESTACADA.capturaAlt}
+                  src={DESTACADA.pantallas[0].movil ?? DESTACADA.pantallas[0].src}
+                  alt={DESTACADA.pantallas[0].alt}
                   width={1600}
                   height={1000}
                   loading="lazy"
@@ -164,8 +164,8 @@ export default function Inicio() {
                 <figure className="muestra" key={m.id}>
                   <img
                     className="muestra__img"
-                    src={m.captura}
-                    alt={m.capturaAlt}
+                    src={m.pantallas[0].src}
+                    alt={m.pantallas[0].alt}
                     width={1400}
                     height={875}
                     loading="lazy"
