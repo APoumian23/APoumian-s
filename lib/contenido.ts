@@ -442,6 +442,8 @@ export const ALCANCE = [
       "Los maestros capturan calificaciones; los padres consultan estado de cuenta y pagan",
     ],
     pantallas: [
+      { src: "/sistemas/erp-escolar-2.webp", alt: "Pagos y cobros: 164 adeudos del ciclo con su saldo total, filtros por estado y concepto, y el detalle por alumno con fecha de vencimiento." },
+      { src: "/sistemas/erp-escolar-3.webp", alt: "Base de alumnos con foto, matrícula, CURP y teléfono, con búsqueda por cualquiera de esos campos." },
       { src: "/sistemas/erp-escolar.webp", alt: "Portal administrativo del ERP escolar: alumnos inscritos, maestros activos, adeudos abiertos y próximos vencimientos de colegiatura." },
     ],
     grupo: "Gestión y operación",
@@ -493,6 +495,7 @@ export const ALCANCE = [
       "Funciona sin señal y sincroniza al volver",
     ],
     pantallas: [
+      { src: "/sistemas/campo-2.webp", alt: "Maquinaria con su costo real por hora y la vida útil consumida de cada equipo, con aviso cuando toca revisar el reemplazo." },
       { src: "/sistemas/campo-cotizador.webp", alt: "Cotizador de servicios en campo: catálogo por categoría con precios, y desglose con costos internos de insumos, traslado y depreciación para calcular el margen real." },
     ],
     grupo: "Gestión y operación",
@@ -514,6 +517,7 @@ export const ALCANCE = [
       "Funciona en celular, tableta y computadora, sin servidor",
     ],
     pantallas: [
+      { src: "/sistemas/pos-comida-2.webp", alt: "Reporte del día: ventas totales, pedidos, ticket promedio y el desglose por canal —mostrador, WhatsApp, Uber Eats, DiDi y Rappi— con el porcentaje de cada uno." },
       { src: "/sistemas/pos-polleria.webp", alt: "Punto de venta de comida: catálogo por categoría, canal de venta —local, WhatsApp, Uber, DiDi, Rappi— y el pedido en curso con su total." },
     ],
     grupo: "Gestión y operación",
@@ -573,6 +577,7 @@ export const ALCANCE = [
       "Cuatro roles: administrador, vendedor, almacenista y cliente",
     ],
     pantallas: [
+      { src: "/sistemas/tienda-operacion-2.webp", alt: "Comisiones por vendedor: generadas, pagadas y por pagar, con las ventas atribuidas y el detalle de cada comisión con su porcentaje y estado." },
       { src: "/sistemas/tienda-inventario.webp", alt: "Inventario de la tienda: variantes activas, unidades en bodega, valor al costo y movimientos recientes por venta." },
     ],
     grupo: "Tiendas en línea",
@@ -593,6 +598,7 @@ export const ALCANCE = [
       "Panel para productos, pedidos, cupones, banners, envíos e imágenes",
     ],
     pantallas: [
+      { src: "/sistemas/tienda-moda-2.webp", alt: "Catálogo de productos con foto, categoría, precio, existencia y estado: visible, bajo pedido, poco stock o agotado." },
       { src: "/sistemas/tienda-moda.webp", alt: "Resumen de la tienda: productos activos, piezas en inventario, piezas con poco stock y agotados." },
     ],
     grupo: "Tiendas en línea",
@@ -613,6 +619,7 @@ export const ALCANCE = [
       "Panel con agenda, reservas, tours, cupones y contenido",
     ],
     pantallas: [
+      { src: "/sistemas/reservas-turismo-2.webp", alt: "Catálogo de tours con foto de cada destino y precio por lancha completa, no por persona." },
       { src: "/sistemas/tours-reservas.webp", alt: "Portada del sitio de tours: foto de la bahía, selector de idioma, botón de reservar y cotización por WhatsApp." },
     ],
     grupo: "Sitios que hacen algo más",
