@@ -103,40 +103,16 @@ export default function Inicio() {
 
       <Marquesina />
 
-      <section className="band band--tight" aria-labelledby="disc-t">
-        <div className="wrap">
-          <header className="head">
-            <h2 className="head__title" id="disc-t">Cuatro disciplinas, un solo interlocutor.</h2>
-            <p className="head__note">
-              No subcontratamos lo que no sabemos hacer. Cada disciplina tiene dentro de casa al
-              especialista que la responde.
-            </p>
-          </header>
-        </div>
-        <div className="wrap">
-          <Revela className="disc-grid">
-            {DISCIPLINAS.map((d) => (
-              <article className="disc-card" key={d.slug}>
-                <span className="disc-card__n">{d.numero}</span>
-                <h3 className="disc-card__t">{d.nombre}</h3>
-                <p className="disc-card__l">{d.servicios.map((s) => s.nombre).join(" · ")}</p>
-                <p className="disc-card__go">
-                  <Link className="link" href={`/servicios/${d.slug}`}>Ver {d.alias} →</Link>
-                </p>
-              </article>
-            ))}
-          </Revela>
-        </div>
-      </section>
-
-      {/* Los sistemas estaban solo en /casos y en una cifra al pie del hero.
-          Un número gris no enseña doce sistemas: aquí se leen sus nombres, que
-          es lo que hace que alguien reconozca su propio problema en la lista. */}
-      <section className="band band--tight rule-top" aria-labelledby="sis-h">
+      {/* Va primero, antes de las disciplinas, y es deliberado.
+          Quien llega no quiere saber cómo estamos organizados por dentro: quiere
+          ver si hemos hecho algo parecido a lo suyo. Los nombres —"ERP escolar",
+          "ventas y vendedores en calle"— hacen que reconozca su propio problema
+          en la lista antes de que le contemos nada de nosotros. */}
+      <section className="band band--tight" aria-labelledby="sis-h">
         <div className="wrap">
           <header className="head">
             <h2 className="head__title" id="sis-h">
-              Y {ALCANCE.length} sistemas que no se pueden enlazar.
+              {ALCANCE.length} sistemas que ningún enlace te puede enseñar.
             </h2>
             <p className="head__note">
               Punto de venta, inventario, nómina, expedientes. Viven detrás de un acceso, con
@@ -156,6 +132,32 @@ export default function Inicio() {
                 </p>
                 <p className="disc-card__go">
                   <Link className="link" href="/casos/#sis-t">Ver qué hace cada uno →</Link>
+                </p>
+              </article>
+            ))}
+          </Revela>
+        </div>
+      </section>
+
+      <section className="band band--tight rule-top" aria-labelledby="disc-t">
+        <div className="wrap">
+          <header className="head">
+            <h2 className="head__title" id="disc-t">Cuatro disciplinas, un solo interlocutor.</h2>
+            <p className="head__note">
+              No subcontratamos lo que no sabemos hacer. Cada disciplina tiene dentro de casa al
+              especialista que la responde.
+            </p>
+          </header>
+        </div>
+        <div className="wrap">
+          <Revela className="disc-grid">
+            {DISCIPLINAS.map((d) => (
+              <article className="disc-card" key={d.slug}>
+                <span className="disc-card__n">{d.numero}</span>
+                <h3 className="disc-card__t">{d.nombre}</h3>
+                <p className="disc-card__l">{d.servicios.map((s) => s.nombre).join(" · ")}</p>
+                <p className="disc-card__go">
+                  <Link className="link" href={`/servicios/${d.slug}`}>Ver {d.alias} →</Link>
                 </p>
               </article>
             ))}
