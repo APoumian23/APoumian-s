@@ -451,6 +451,8 @@ export const ALCANCE = [
     id: "ventas-calle",
     captura: "/sistemas/ventas-calle.webp",
     capturaAlt: "Jerarquía del equipo de ventas: dirección, gerentes por región y supervisores por ciudad, con sus subordinados y saldos.",
+    captura2: "/sistemas/ventas-calle-2.webp",
+    captura2Alt: "Inventario por zona: Apaseo el Grande, Celaya, Cortazar, Guanajuato Capital, Salamanca y Uriangato, cada una con sus vendedores y sus unidades en existencia.",
     grupo: "Gestión y operación",
     titulo: "Ventas y vendedores en calle",
     sector: "Distribución",
@@ -481,6 +483,8 @@ export const ALCANCE = [
     id: "autolavados",
     captura: "/sistemas/autolavados-tablero.webp",
     capturaAlt: "Tablero del autolavado: ingresos del día, órdenes, reservas próximas con vehículo y placa, y membresías por vencer.",
+    captura2: "/sistemas/autolavados-2.webp",
+    captura2Alt: "Punto de venta del autolavado: catálogo de servicios con duración y precio, y la orden en curso con cliente, vehículo, promoción y método de pago.",
     capturaMovil: "/sistemas/autolavados-detalle.webp",
     grupo: "Gestión y operación",
     titulo: "Gestión para autolavados",
@@ -694,10 +698,17 @@ export const CASOS = [
 export type Muestra = {
   id: string;
   titulo: string;
+  sector: string;
+  estado: string;
+  /** Qué resuelve. Es lo que un prospecto lee para reconocer su propio caso. */
+  que: string;
   captura: string;
   capturaAlt: string;
   /** Recorte legible para pantalla angosta. Solo lo tiene la que va grande. */
   capturaMovil?: string;
+  /** Segunda pantalla del mismo sistema, para su página de detalle. */
+  captura2?: string;
+  captura2Alt?: string;
 };
 
 export const CON_CAPTURA: Muestra[] = ALCANCE.flatMap((x) =>
@@ -705,9 +716,13 @@ export const CON_CAPTURA: Muestra[] = ALCANCE.flatMap((x) =>
     ? [{
         id: x.id,
         titulo: x.titulo,
+        sector: x.sector,
+        estado: x.estado,
+        que: x.que,
         captura: x.captura,
         capturaAlt: x.capturaAlt,
         ...("capturaMovil" in x ? { capturaMovil: x.capturaMovil } : {}),
+        ...("captura2" in x ? { captura2: x.captura2, captura2Alt: x.captura2Alt } : {}),
       }]
     : [],
 );

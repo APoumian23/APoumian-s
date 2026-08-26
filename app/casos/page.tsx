@@ -116,17 +116,21 @@ export default function Casos() {
           <div className="galeria">
             {CON_CAPTURA.map((x) => (
               <figure className="galeria__i" key={x.id}>
-                <img
-                  className="muestra__img"
-                  src={x.captura}
-                  alt={x.capturaAlt}
-                  width={1400}
-                  height={875}
-                  loading="lazy"
-                  decoding="async"
-                />
+                {/* La imagen entera es el enlace: quien quiere verla de cerca
+                    va a hacer clic en ella, no en un texto al pie. */}
+                <Link className="galeria__l" href={`/casos/sistemas/${x.id}`}>
+                  <img
+                    className="muestra__img"
+                    src={x.captura}
+                    alt={x.capturaAlt}
+                    width={1400}
+                    height={875}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </Link>
                 <figcaption className="muestra__cap label">
-                  <span>{x.titulo}</span>
+                  <Link className="link" href={`/casos/sistemas/${x.id}`}>{x.titulo} →</Link>
                 </figcaption>
               </figure>
             ))}
