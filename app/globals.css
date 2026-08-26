@@ -1299,3 +1299,26 @@ a { color: inherit; text-decoration: none; }
   color: var(--color-estado-mal-claro) !important;
   font-weight: 500;
 }
+
+/* ── Subgrupos dentro de una sección ────────────────────────────────────────
+ * El alcance son diez sistemas de tres clases distintas. Diez fichas seguidas
+ * se leen como una lista de inventario; agrupadas, se leen como capacidades.
+ * El rótulo va discreto: manda la ficha, no la etiqueta. */
+.grupo + .grupo {
+  margin-top: var(--space-2xl);
+}
+
+/* Sobre el panel oscuro el gris de papel no alcanza contraste. */
+.deep .grupo__t { color: var(--color-muted-on-deep); border-bottom-color: var(--color-rule-deep); }
+
+.grupo__t {
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-lg);
+  padding-bottom: var(--space-xs);
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+}

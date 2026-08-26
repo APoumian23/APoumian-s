@@ -416,49 +416,104 @@ export const TAPREVIEWS = {
 } as const;
 
 
-/* Software de operación: lo que corre PUERTAS ADENTRO de un negocio.
+/* El alcance: lo que se ha construido y no tiene liga que enseñar.
  *
- * No lleva enlace y no es un olvido. Un sistema de punto de venta o de nómina
- * no tiene dirección pública que enseñar: vive detrás de un acceso, con datos
- * de clientes reales dentro. Enlazar a la pantalla de acceso no probaría nada,
- * y una captura con datos verdaderos sería un problema para el cliente, no una
- * prueba de trabajo.
+ * Un punto de venta, un ERP escolar o una PWA de operación en campo no tienen
+ * dirección pública. Viven detrás de un acceso, con datos de clientes reales
+ * dentro. Enlazar a una pantalla de acceso no prueba nada, y una captura con
+ * datos verdaderos sería un problema para el cliente, no una prueba de
+ * trabajo. Lo que sí se puede enseñar es qué resuelve cada uno.
  *
- * Lo que sí se puede enseñar es el alcance. Las cifras salen de contar los
- * modelos del schema de Prisma de cada uno, no de estimarlos.
+ * NO SE NOMBRA A NINGÚN CLIENTE aquí. Los únicos tres que autorizaron aparecer
+ * con nombre están arriba, en CASOS. Poner el nombre de un cliente en el
+ * portafolio es decisión suya, no nuestra.
  *
- * Ninguno de los dos está terminado, y las fichas lo dicen. Presentar como
- * entregado algo que sigue en construcción se cae en la primera pregunta. */
-export const SISTEMAS = [
+ * `estado` dice la verdad. Casi todo está en construcción, y decirlo cuesta
+ * menos que sostener después que estaba terminado.
+ *
+ * Los datos salen de las notas de cada proyecto en el vault. Quedan fuera a
+ * propósito los que están en plan o en diseño —no se enseña lo que no se ha
+ * escrito— y los de práctica. */
+export const ALCANCE = [
+  {
+    id: "erp-escolar",
+    grupo: "Gestión y operación",
+    titulo: "ERP escolar",
+    sector: "Colegio",
+    estado: "En construcción",
+    que: "Tres portales con acceso por rol: administración, maestros y padres. Alumnos, inscripciones, cobros con pagos parciales y condonaciones, facturación CFDI 4.0, inventario de uniformes, boletas y kardex en PDF.",
+  },
+  {
+    id: "agenda-belleza",
+    grupo: "Gestión y operación",
+    titulo: "Agenda y caja para salones",
+    sector: "Dos negocios de belleza",
+    estado: "Entregado",
+    que: "Agenda de citas con historial, calculadora de precios y materiales, expediente de clientas y reporte financiero. Los dos operan con esto todos los días.",
+  },
+  {
+    id: "ventas-calle",
+    grupo: "Gestión y operación",
+    titulo: "Ventas y vendedores en calle",
+    sector: "Distribución",
+    estado: "En construcción",
+    que: "Zonas, inventario por vendedor, corte de ventas, crédito y reportes por jerarquía. Pensado para quien vende fuera de un mostrador.",
+  },
+  {
+    id: "campo",
+    grupo: "Gestión y operación",
+    titulo: "Operación en campo",
+    sector: "Limpieza y fumigación industrial",
+    estado: "En construcción",
+    que: "Aplicación que funciona sin señal y sincroniza al volver: agenda, servicios en sitio, cotizaciones, empleados, maquinaria y finanzas. En campo no siempre hay internet.",
+  },
   {
     id: "autolavados",
-    numero: "01",
+    grupo: "Gestión y operación",
     titulo: "Gestión para autolavados",
-    dueno: "Producto propio",
-    que: "Punto de venta, agenda de reservas, membresías recurrentes y control de turnos, gastos y asistencia. Un negocio por organización, cada uno con su propio plan.",
-    detalle: "21 modelos de datos · 13 migraciones · en construcción",
-    hace: [
-      "Punto de venta con pagos divididos entre efectivo, tarjeta y transferencia",
-      "Agenda diaria con seis estados, del apartado al no-show",
-      "Membresías por semana, mes o año, con cobertura por servicio",
-      "Clientes con sus vehículos: placa, marca, modelo y en qué va cada uno",
-      "Reportes con exportación a Excel y PDF",
-    ],
+    sector: "Producto propio",
+    estado: "En construcción",
+    que: "Punto de venta con pagos divididos, agenda con seis estados, membresías recurrentes, lealtad por puntos y control de turnos, asistencia y gastos. Un negocio por organización, cada uno con su plan.",
   },
   {
     id: "tienda-operacion",
-    numero: "02",
+    grupo: "Tiendas en línea",
     titulo: "Tienda con operación completa",
-    dueno: "Para cliente",
-    que: "Tienda en línea de menudeo y mayoreo que además opera por dentro: punto de venta para el mostrador, inventario compartido entre los dos canales, comisiones por vendedor y cierre de nómina.",
-    detalle: "22 modelos de datos · cuatro roles · en construcción",
-    hace: [
-      "Precio por volumen que cambia en vivo según lo que lleve el carrito",
-      "Cobro con tarjeta, transferencia y efectivo en tienda",
-      "Un solo inventario para la tienda en línea y el mostrador",
-      "Comisión por vendedor con cinco reglas y sueldo base",
-      "Cierre de nómina contra objetivos del mes",
-    ],
+    sector: "Maquillaje, menudeo y mayoreo",
+    estado: "En construcción",
+    que: "No solo vende: opera. Precio por volumen que cambia en vivo, punto de venta para el mostrador, un mismo inventario para los dos canales, comisión por vendedor con cinco reglas y cierre de nómina.",
+  },
+  {
+    id: "tienda-moda",
+    grupo: "Tiendas en línea",
+    titulo: "Tienda de moda y tecnología",
+    sector: "Streetwear, perfumes y electrónica",
+    estado: "En construcción",
+    que: "Catálogo por categorías con panel de administración completo, pensada para un catálogo que cambia seguido.",
+  },
+  {
+    id: "reservas-turismo",
+    grupo: "Sitios que hacen algo más",
+    titulo: "Reservas con anticipo",
+    sector: "Turismo náutico",
+    estado: "En construcción",
+    que: "Sitio en dos idiomas con reserva en línea y cobro del 30% por adelantado. El anticipo es lo que separa una consulta de una venta.",
+  },
+  {
+    id: "eventos",
+    grupo: "Sitios que hacen algo más",
+    titulo: "Sitio con administrador propio",
+    sector: "Fiestas y eventos infantiles",
+    estado: "En construcción",
+    que: "Tres piezas: el sitio con su panel para cambiar contenido, y dos versiones ligeras para campañas que tienen que cargar rápido.",
+  },
+  {
+    id: "consultorio",
+    grupo: "Sitios que hacen algo más",
+    titulo: "Sitio de consultorio",
+    sector: "Psicotraumatología",
+    estado: "En construcción",
+    que: "Trayectoria, servicios y contacto para una especialista. Sobrio, porque quien busca terapia no quiere que le vendan.",
   },
 ] as const;
 

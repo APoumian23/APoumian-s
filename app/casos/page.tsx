@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, SISTEMAS, TAPREVIEWS } from "@/lib/contenido";
+import { ALCANCE, AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, TAPREVIEWS } from "@/lib/contenido";
 import Rejilla from "../componentes/Rejilla";
 
 export const metadata: Metadata = {
@@ -10,6 +10,8 @@ export const metadata: Metadata = {
     "Proyectos entregados, productos propios y el código con el que se construyeron. Los sitios de clientes están en línea y puedes abrirlos.",
   alternates: { canonical: "/casos" },
 };
+
+const GRUPOS = [...new Set(ALCANCE.map((x) => x.grupo))];
 
 export default function Casos() {
   return (
@@ -21,7 +23,7 @@ export default function Casos() {
             Trabajo <span className="swatch">que se puede revisar</span>.
           </h1>
           <p className="lede">
-            Tres clientes en línea, dos productos propios, dos sistemas que operan puertas
+            Tres clientes en línea, dos productos propios, diez sistemas que operan puertas
             adentro, y el código con el que se construyeron. Casi nadie te enseña esto antes de
             que lo contrates.
           </p>
@@ -99,22 +101,27 @@ export default function Casos() {
             <h2 className="head__title" id="sis-t">Y lo que no se puede enlazar.</h2>
             <p className="head__note">
               Software que corre puertas adentro de un negocio: punto de venta, inventario,
-              nómina. No tiene dirección pública porque vive detrás de un acceso, con datos de
-              clientes reales dentro. Lo que sí se puede enseñar es el alcance.
+              nómina, expedientes. No tiene dirección pública porque vive detrás de un acceso,
+              con datos de clientes reales dentro. Lo que sí se puede enseñar es qué resuelve
+              cada uno. Los clientes van sin nombre: ponerlo es decisión suya, no nuestra.
             </p>
           </header>
 
-          <Rejilla
-            columnas={2}
-            fichas={SISTEMAS.map((x) => ({
-              id: x.id,
-              numero: x.numero,
-              titulo: x.titulo,
-              lema: x.que,
-              detalle: `${x.dueno} · ${x.detalle}`,
-              lista: [...x.hace],
-            }))}
-          />
+          {GRUPOS.map((grupo) => (
+            <div key={grupo} className="grupo">
+              <h3 className="grupo__t">{grupo}</h3>
+              <Rejilla
+                columnas={3}
+                fichas={ALCANCE.filter((x) => x.grupo === grupo).map((x, i) => ({
+                  id: x.id,
+                  numero: String(i + 1).padStart(2, "0"),
+                  titulo: x.titulo,
+                  lema: x.que,
+                  detalle: `${x.sector} · ${x.estado}`,
+                }))}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
