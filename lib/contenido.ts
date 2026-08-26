@@ -416,6 +416,53 @@ export const TAPREVIEWS = {
 } as const;
 
 
+/* Software de operación: lo que corre PUERTAS ADENTRO de un negocio.
+ *
+ * No lleva enlace y no es un olvido. Un sistema de punto de venta o de nómina
+ * no tiene dirección pública que enseñar: vive detrás de un acceso, con datos
+ * de clientes reales dentro. Enlazar a la pantalla de acceso no probaría nada,
+ * y una captura con datos verdaderos sería un problema para el cliente, no una
+ * prueba de trabajo.
+ *
+ * Lo que sí se puede enseñar es el alcance. Las cifras salen de contar los
+ * modelos del schema de Prisma de cada uno, no de estimarlos.
+ *
+ * Ninguno de los dos está terminado, y las fichas lo dicen. Presentar como
+ * entregado algo que sigue en construcción se cae en la primera pregunta. */
+export const SISTEMAS = [
+  {
+    id: "autolavados",
+    numero: "01",
+    titulo: "Gestión para autolavados",
+    dueno: "Producto propio",
+    que: "Punto de venta, agenda de reservas, membresías recurrentes y control de turnos, gastos y asistencia. Un negocio por organización, cada uno con su propio plan.",
+    detalle: "21 modelos de datos · 13 migraciones · en construcción",
+    hace: [
+      "Punto de venta con pagos divididos entre efectivo, tarjeta y transferencia",
+      "Agenda diaria con seis estados, del apartado al no-show",
+      "Membresías por semana, mes o año, con cobertura por servicio",
+      "Clientes con sus vehículos: placa, marca, modelo y en qué va cada uno",
+      "Reportes con exportación a Excel y PDF",
+    ],
+  },
+  {
+    id: "tienda-operacion",
+    numero: "02",
+    titulo: "Tienda con operación completa",
+    dueno: "Para cliente",
+    que: "Tienda en línea de menudeo y mayoreo que además opera por dentro: punto de venta para el mostrador, inventario compartido entre los dos canales, comisiones por vendedor y cierre de nómina.",
+    detalle: "22 modelos de datos · cuatro roles · en construcción",
+    hace: [
+      "Precio por volumen que cambia en vivo según lo que lleve el carrito",
+      "Cobro con tarjeta, transferencia y efectivo en tienda",
+      "Un solo inventario para la tienda en línea y el mostrador",
+      "Comisión por vendedor con cinco reglas y sueldo base",
+      "Cierre de nómina contra objetivos del mes",
+    ],
+  },
+] as const;
+
+
 /** Productos propios, mostrados en /codigo como obra construida.
  *  No llevan enlace externo: todavía no están desplegados en público. */
 export const PRODUCTOS_TRABAJO = [

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, TAPREVIEWS } from "@/lib/contenido";
+import { AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, SISTEMAS, TAPREVIEWS } from "@/lib/contenido";
 import Rejilla from "../componentes/Rejilla";
 
 export const metadata: Metadata = {
@@ -18,11 +18,12 @@ export default function Casos() {
         <div className="wrap">
           <span className="label label--accent label--dash">Casos</span>
           <h1 className="display" style={{ margin: "var(--space-md) 0 var(--space-lg)", maxWidth: "15ch" }}>
-            Con nombre y <span className="swatch">con liga</span>.
+            Trabajo <span className="swatch">que se puede revisar</span>.
           </h1>
           <p className="lede">
-            Tres clientes, dos productos propios y el código con el que se construyeron. Casi
-            nadie te enseña esto antes de que lo contrates.
+            Tres clientes en línea, dos productos propios, dos sistemas que operan puertas
+            adentro, y el código con el que se construyeron. Casi nadie te enseña esto antes de
+            que lo contrates.
           </p>
         </div>
       </section>
@@ -88,6 +89,31 @@ export default function Casos() {
                 hrefTexto: "Ver TapReviews",
               },
             ]}
+          />
+        </div>
+      </section>
+
+      <section className="band rule-top" aria-labelledby="sis-t">
+        <div className="wrap">
+          <header className="head">
+            <h2 className="head__title" id="sis-t">Y lo que no se puede enlazar.</h2>
+            <p className="head__note">
+              Software que corre puertas adentro de un negocio: punto de venta, inventario,
+              nómina. No tiene dirección pública porque vive detrás de un acceso, con datos de
+              clientes reales dentro. Lo que sí se puede enseñar es el alcance.
+            </p>
+          </header>
+
+          <Rejilla
+            columnas={2}
+            fichas={SISTEMAS.map((x) => ({
+              id: x.id,
+              numero: x.numero,
+              titulo: x.titulo,
+              lema: x.que,
+              detalle: `${x.dueno} · ${x.detalle}`,
+              lista: [...x.hace],
+            }))}
           />
         </div>
       </section>

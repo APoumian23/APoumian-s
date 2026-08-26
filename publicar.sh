@@ -25,16 +25,31 @@ PROTEGIDAS=(
   .env.example .env.production .env.local .env.development.local
 )
 
-# `next build` y `next dev` escriben en directorios distintos (ver next.config.ts),
-# pero basta con que alguien borre .next a mano —o que un build futuro cambie de
-# opinión— para que el servidor de desarrollo se quede sin los trozos que ya tenía
-# cargados y responda 500 con "Cannot find module './325.js'". Ya pasó dos veces.
-# Avisar cuesta una línea; el desconcierto de ver el sitio caído sin haber tocado
-# nada cuesta media hora.
-if lsof -nP -iTCP:3180 -sTCP:LISTEN >/dev/null 2>&1; then
-  echo "⚠ El servidor de desarrollo está encendido en el 3180."
-  echo "  Si algo se rompe después de esto, reinícialo: no es el código, es la caché."
-  echo
+# `next build` borra archivos de `.next` aunque `distDir` lo mande a otra
+# carpeta. Está medido: con el servidor de desarrollo encendido, un build
+# elimina 17 archivos de `.next/server/app/` y la siguiente petición responde
+# 500 con "Cannot find module './325.js'". Es comportamiento de Next, no algo
+# que se pueda configurar.
+#
+# Antes esto solo avisaba. No sirvió: el aviso se pierde entre la salida del
+# build y el 500 aparece después, cuando ya nadie lo relaciona. Dos veces
+# costó media hora buscar un fallo en el código que no estaba ahí. Así que se
+# niega, que es lo único que de verdad lo evita.
+if lsof -nP -iTCP:3180 -sTCP:LISTEN >/dev/null 2>&1 && [ "${FORZAR:-}" != "1" ]; then
+  cat <<'AVISO'
+✗ El servidor de desarrollo está encendido en el 3180.
+
+  Compilar ahora lo dejaría respondiendo 500 con "Cannot find module".
+  No es un fallo del código: `next build` borra archivos que el dev tiene
+  cargados, y eso no se puede evitar desde la configuración.
+
+  Apágalo, publica, y vuelve a encenderlo:
+
+      pkill -f "next dev" && ./publicar.sh && pnpm dev
+
+  Si sabes lo que haces y vas a reiniciarlo tú:  FORZAR=1 ./publicar.sh
+AVISO
+  exit 1
 fi
 
 echo "→ Compilando…"
