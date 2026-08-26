@@ -122,6 +122,46 @@ export default function Inicio() {
           </header>
         </div>
         <div className="wrap">
+          {/* Una imagen del software corriendo. Doce nombres prueban que existe
+              trabajo; una captura prueba que existe producto. Va con datos de
+              demostración —organización y clientes inventados— porque enseñar
+              la pantalla de un cliente real sería un problema para él, no una
+              prueba para nosotros. */}
+          <figure className="muestra">
+            {/* Dos recortes, no uno escalado. El tablero completo a 375px queda a
+                escala 0.21: el texto de 13px se vuelve de 2.7px y la captura pasa
+                de ser prueba a ser una mancha gris que igual pesa 74 KB. En
+                pantalla angosta se sirve el detalle de los indicadores, que sí se
+                lee y pesa 11 KB.
+
+                Va con <picture> y no con <Image> porque esto es dirección de arte
+                —imagen distinta, no la misma más chica— y porque el sitio se
+                exporta estático: el optimizador de Next no corre. */}
+            <picture>
+              <source
+                media="(min-width: 40rem)"
+                srcSet="/sistemas/autolavados-tablero.webp"
+                width={1600}
+                height={1000}
+              />
+              <img
+                className="muestra__img"
+                src="/sistemas/autolavados-detalle.webp"
+                alt="Tablero del sistema de gestión para autolavados: ingresos del día, órdenes, reservas próximas con vehículo y placa, y membresías por vencer."
+                width={900}
+                height={305}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <figcaption className="muestra__cap label">
+              <span>Gestión para autolavados · datos de demostración</span>
+              <Link className="link" href="/casos/#sis-t">Ver los {ALCANCE.length} →</Link>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div className="wrap">
           <Revela className="disc-grid">
             {GRUPOS.map((g, i) => (
               <article className="disc-card" key={g}>
