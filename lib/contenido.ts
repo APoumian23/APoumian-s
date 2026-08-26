@@ -476,6 +476,22 @@ export const ALCANCE = [
     que: "Punto de venta con pagos divididos, agenda con seis estados, membresías recurrentes, lealtad por puntos y control de turnos, asistencia y gastos. Un negocio por organización, cada uno con su plan.",
   },
   {
+    id: "asistente-voz",
+    grupo: "Asistentes y automatización",
+    titulo: "Asistente de IA con voz",
+    sector: "Producto propio",
+    estado: "En construcción",
+    que: "Backend propio con una capacidad por módulo e interfaz tipo tablero. Entiende voz, se conecta a servicios externos por complementos y ejecuta lo que se le pide. 91 pruebas automatizadas, todas en verde.",
+  },
+  {
+    id: "reporte-whatsapp",
+    grupo: "Asistentes y automatización",
+    titulo: "Reporte diario por WhatsApp",
+    sector: "Producto propio",
+    estado: "Esqueleto en marcha",
+    que: "Lee la base de conocimiento del negocio cada mañana, arma el resumen de lo que avanzó y lo que está detenido, y lo manda por WhatsApp. Hoy recorre 40 proyectos; la conversación en dos vías está en diseño.",
+  },
+  {
     id: "tienda-operacion",
     grupo: "Tiendas en línea",
     titulo: "Tienda con operación completa",

@@ -23,7 +23,7 @@ export default function Casos() {
             Trabajo <span className="swatch">que se puede revisar</span>.
           </h1>
           <p className="lede">
-            Tres clientes en línea, dos productos propios, diez sistemas que operan puertas
+            Tres clientes en línea, dos productos propios, doce sistemas que operan puertas
             adentro, y el código con el que se construyeron. Casi nadie te enseña esto antes de
             que lo contrates.
           </p>
