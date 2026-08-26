@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { AUDITORIAS, CIFRAS, DISCIPLINAS, SITE, TAPREVIEWS, TRABAJO } from "@/lib/contenido";
+import { ALCANCE, AUDITORIAS, CIFRAS, DISCIPLINAS, SITE, TAPREVIEWS, TRABAJO } from "@/lib/contenido";
 import { CORREO, TEL, WA_GENERAL } from "@/lib/enlaces";
 import Marquesina from "./componentes/Marquesina";
 import Revela from "./componentes/Revela";
@@ -17,6 +17,8 @@ const jsonLd = {
   email: CORREO,
   telephone: `+${TEL}`,
 };
+
+const GRUPOS = [...new Set(ALCANCE.map((x) => x.grupo))];
 
 export default function Inicio() {
   const enLinea = TRABAJO.filter((t) => t.sitio);
@@ -120,6 +122,40 @@ export default function Inicio() {
                 <p className="disc-card__l">{d.servicios.map((s) => s.nombre).join(" · ")}</p>
                 <p className="disc-card__go">
                   <Link className="link" href={`/servicios/${d.slug}`}>Ver {d.alias} →</Link>
+                </p>
+              </article>
+            ))}
+          </Revela>
+        </div>
+      </section>
+
+      {/* Los sistemas estaban solo en /casos y en una cifra al pie del hero.
+          Un número gris no enseña doce sistemas: aquí se leen sus nombres, que
+          es lo que hace que alguien reconozca su propio problema en la lista. */}
+      <section className="band band--tight rule-top" aria-labelledby="sis-h">
+        <div className="wrap">
+          <header className="head">
+            <h2 className="head__title" id="sis-h">
+              Y {ALCANCE.length} sistemas que no se pueden enlazar.
+            </h2>
+            <p className="head__note">
+              Punto de venta, inventario, nómina, expedientes. Viven detrás de un acceso, con
+              datos de clientes reales dentro, así que no hay dirección pública que enseñar —
+              pero sí se puede decir qué resuelve cada uno.
+            </p>
+          </header>
+        </div>
+        <div className="wrap">
+          <Revela className="disc-grid">
+            {GRUPOS.map((g, i) => (
+              <article className="disc-card" key={g}>
+                <span className="disc-card__n">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="disc-card__t">{g}</h3>
+                <p className="disc-card__l">
+                  {ALCANCE.filter((x) => x.grupo === g).map((x) => x.titulo).join(" · ")}
+                </p>
+                <p className="disc-card__go">
+                  <Link className="link" href="/casos/#sis-t">Ver qué hace cada uno →</Link>
                 </p>
               </article>
             ))}
