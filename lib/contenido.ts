@@ -428,6 +428,37 @@ export const TAPREVIEWS = {
  * Los datos salen de las notas de cada proyecto en el vault. Quedan fuera a
  * propósito los que están en plan o en diseño —no se enseña lo que no se ha
  * escrito— y los de práctica. */
+/* Capturas de los sistemas corriendo, con datos de demostración.
+ *
+ * Doce nombres prueban que existe trabajo; una captura prueba que existe
+ * producto. Todas llevan datos inventados y el nombre del cliente borrado
+ * antes de disparar la foto: enseñar la pantalla de un cliente real sería un
+ * problema para él, no una prueba para nosotros.
+ *
+ * El procedimiento está en el vault, en `capturas/LEEME.md`. */
+export const MUESTRAS = [
+  {
+    id: "autolavados",
+    src: "/sistemas/autolavados-tablero.webp",
+    movil: "/sistemas/autolavados-detalle.webp",
+    pie: "Gestión para autolavados",
+    alt: "Tablero de un sistema de gestión para autolavados: ingresos del día, órdenes, reservas próximas con vehículo y placa, y membresías por vencer.",
+  },
+  {
+    id: "erp-escolar",
+    src: "/sistemas/erp-escolar.webp",
+    pie: "ERP escolar",
+    alt: "Portal administrativo de un ERP escolar: alumnos inscritos, maestros activos, adeudos abiertos, corte del día por método de pago y próximos vencimientos de colegiatura.",
+  },
+  {
+    id: "tienda",
+    src: "/sistemas/tienda-inventario.webp",
+    pie: "Inventario de una tienda",
+    alt: "Inventario de una tienda en línea: variantes activas, unidades en bodega, valor del inventario al costo y movimientos recientes por venta.",
+  },
+] as const;
+
+
 export const ALCANCE = [
   {
     id: "erp-escolar",

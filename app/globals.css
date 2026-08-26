@@ -1332,7 +1332,11 @@ a { color: inherit; text-decoration: none; }
  * Mismo tratamiento que las capturas del hero: borde fino, esquina suave y el
  * recorte encima del fondo de papel, para que la imagen se lea como pieza del
  * sitio y no como algo pegado. */
-.muestra { margin: 0 0 var(--space-xl); }
+.muestras { margin-bottom: var(--space-xl); display: grid; gap: var(--space-md); }
+.muestras__par { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-md); }
+@media (min-width: 44rem) { .muestras__par { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.muestra { margin: 0; }
 .muestra picture { display: block; }
 .muestra__img {
   display: block; width: 100%; height: auto;
