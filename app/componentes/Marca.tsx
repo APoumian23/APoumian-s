@@ -11,9 +11,12 @@ export default function Marca({ tono = "marino" }: { tono?: "marino" | "blanco" 
         alt=""
         width={226}
         height={199}
-        /* Sin `priority`: precargarlo competía por ancho de banda con la
-           imagen que decide el LCP de la portada, y este logo se pinta a
-           30px. */
+        /* `loading="eager"` y no `priority`. Los dos pintan el logo de
+           inmediato, pero `priority` además lo precarga, y ahí competía por
+           ancho de banda con la imagen que decide el LCP —siendo un logo de
+           30px—. Diferirlo tampoco sirve: es lo primero que se ve, y en
+           `lazy` aparece de golpe un momento después. */
+        loading="eager"
       />
       <span className="marca__texto">
         <span className="marca__nombre">APoumian</span>

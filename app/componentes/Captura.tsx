@@ -26,14 +26,25 @@ type Props = {
   prioridad?: boolean;
 };
 
+/**
+ * Arma el `srcset` de una captura.
+ *
+ * Se exporta porque la imagen de arte dirigida de la portada usa `<picture>`
+ * con dos ramas y no puede pasar por este componente, pero la lista de anchos
+ * tiene que ser la misma o el navegador pediría variantes que no existen.
+ */
+export function anchos(src: string, ancho: number): string {
+  const base = src.replace(/\.webp$/, "");
+  return [
+    ...ANCHOS.filter((w) => w < ancho).map((w) => `${base}-${w}w.webp ${w}w`),
+    `${src} ${ancho}w`,
+  ].join(", ");
+}
+
 export default function Captura({
   src, alt, width, height, sizes, className, prioridad = false,
 }: Props) {
-  const base = src.replace(/\.webp$/, "");
-  const juego = [
-    ...ANCHOS.filter((w) => w < width).map((w) => `${base}-${w}w.webp ${w}w`),
-    `${src} ${width}w`,
-  ].join(", ");
+  const juego = anchos(src, width);
 
   return (
     <img

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Captura from "./componentes/Captura";
+import Captura, { anchos } from "./componentes/Captura";
 import { ALCANCE, AUDITORIAS, CIFRAS, CON_CAPTURA, DISCIPLINAS, SITE, TAPREVIEWS, TRABAJO } from "@/lib/contenido";
 import { WA_GENERAL } from "@/lib/enlaces";
 import Marquesina from "./componentes/Marquesina";
@@ -139,13 +139,23 @@ export default function Inicio() {
               agregar una aparece en los dos lados sin tocar ninguna página. */}
           <div className="muestras">
             <figure className="muestra muestra--grande">
+              {/* Arte dirigida: en celular va un recorte distinto, no la misma imagen
+                  encogida — una captura densa a 375px se vuelve ilegible. Cada rama
+                  lleva su propio srcset para no mandar 1600px de ancho a una pantalla
+                  que pinta 335. */}
               <picture>
                 {DESTACADA.pantallas[0].movil && (
-                  <source media="(min-width: 40rem)" srcSet={DESTACADA.pantallas[0].src} />
+                  <source
+                    media="(min-width: 40rem)"
+                    srcSet={anchos(DESTACADA.pantallas[0].src, 1600)}
+                    sizes="(max-width: 1100px) 92vw, 720px"
+                  />
                 )}
                 <img
                   className="muestra__img"
                   src={DESTACADA.pantallas[0].movil ?? DESTACADA.pantallas[0].src}
+                  srcSet={anchos(DESTACADA.pantallas[0].movil ?? DESTACADA.pantallas[0].src, 1600)}
+                  sizes="(max-width: 780px) 90vw, 720px"
                   alt={DESTACADA.pantallas[0].alt}
                   width={1600}
                   height={1000}
@@ -162,14 +172,15 @@ export default function Inicio() {
             <div className="muestras__par">
               {CON_CAPTURA.filter((m) => m.id !== DESTACADA.id).slice(0, 2).map((m) => (
                 <figure className="muestra" key={m.id}>
-                  <img
+                  <Captura
                     className="muestra__img"
                     src={m.pantallas[0].src}
                     alt={m.pantallas[0].alt}
                     width={1400}
                     height={875}
-                    loading="lazy"
-                    decoding="async"
+                    /* Medido en vivo: 335px en celular, 352px a 800px de ancho,
+                       ~560px en pantalla grande. */
+                    sizes="(max-width: 780px) 90vw, (max-width: 1100px) 45vw, 560px"
                   />
                   <figcaption className="muestra__cap label">
                     <span>{m.titulo}</span>
