@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CON_CAPTURA } from "@/lib/contenido";
+import { resumen, titulo } from "@/lib/meta";
 
 /* Una página por sistema.
  *
@@ -24,8 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const s = CON_CAPTURA.find((x) => x.id === id);
   if (!s) return {};
   return {
-    title: s.titulo,
-    description: s.que,
+    title: titulo(s.titulo, "sistema a la medida"),
+    description: s.meta ?? resumen(s.que, `Sistema a la medida para ${s.sector.toLowerCase()}.`),
     alternates: { canonical: `/casos/sistemas/${s.id}` },
   };
 }

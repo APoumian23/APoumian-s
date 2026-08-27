@@ -1,22 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ALCANCE, AUDITORIAS, CIFRAS, CON_CAPTURA, DISCIPLINAS, SITE, TAPREVIEWS, TRABAJO } from "@/lib/contenido";
-import { CORREO, TEL, WA_GENERAL } from "@/lib/enlaces";
+import { WA_GENERAL } from "@/lib/enlaces";
 import Marquesina from "./componentes/Marquesina";
 import Revela from "./componentes/Revela";
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: SITE.nombre,
-  url: SITE.dominio,
-  description: "Agencia de tecnología e inteligencia artificial para pymes.",
-  slogan: SITE.eslogan,
-  areaServed: SITE.pais,
-  address: { "@type": "PostalAddress", addressLocality: "Celaya", addressRegion: "Guanajuato", addressCountry: "MX" },
-  email: CORREO,
-  telephone: `+${TEL}`,
-};
 
 const GRUPOS = [...new Set(ALCANCE.map((x) => x.grupo))];
 
@@ -29,8 +16,6 @@ export default function Inicio() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
       <section className="hero grid-bg">
         <div className="wrap">
           <div className="hero__grid">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { DISCIPLINAS, SITE } from "@/lib/contenido";
-import { CORREO, MOTOR, TAP_ACCESO, WA_GENERAL } from "@/lib/enlaces";
+import { CORREO, MOTOR, TAP_ACCESO, TEL, WA_GENERAL } from "@/lib/enlaces";
 import Marca from "./Marca";
 
 /* Pie en tres columnas: marca con acción, mapa del sitio y productos/contacto.
@@ -71,6 +71,9 @@ export default function Pie() {
                   WhatsApp ↗
                 </a>
               </li>
+              {/* El número también marcable: no todo el mundo quiere escribir,
+                  y en celular un tel: abre la llamada de un toque. */}
+              <li><a className="foot__link" href={`tel:+${TEL}`}>461 180 1622</a></li>
               <li className="pie__lugar">{SITE.ciudad}, {SITE.pais}</li>
               <li><Link className="foot__link" href="/privacidad">Aviso de privacidad</Link></li>
             </ul>

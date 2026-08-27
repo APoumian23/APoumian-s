@@ -42,6 +42,8 @@ export type Servicio = {
 
 export type Disciplina = {
   id: string;
+  /** Descripción para buscadores. Solo donde recortar `cuerpo` queda mal escrito. */
+  meta?: string;
   slug: string;
   numero: string;
   nombre: string;
@@ -56,6 +58,8 @@ export const DISCIPLINAS: Disciplina[] = [
   {
     id: "producto",
     slug: "producto-digital",
+    meta:
+      "Sitios, tiendas en línea, sistemas internos y aplicaciones a la medida de cómo ya trabajas. Nadie cambia su operación para caberle a un programa.",
     numero: "01",
     nombre: "Producto digital",
     alias: "producto digital",
@@ -95,6 +99,8 @@ export const DISCIPLINAS: Disciplina[] = [
   {
     id: "crecimiento",
     slug: "crecimiento",
+    meta:
+      "Publicidad en Google y Meta y posicionamiento operados por el mismo equipo que construyó el producto. La campaña sabe qué se está vendiendo.",
     numero: "02",
     nombre: "Crecimiento",
     alias: "crecimiento",
@@ -134,6 +140,8 @@ export const DISCIPLINAS: Disciplina[] = [
   {
     id: "ia",
     slug: "ia-y-automatizacion",
+    meta:
+      "Automatizamos lo repetitivo del negocio: contestar lo mismo, capturar facturas a mano y pasar datos de un sistema a otro. Con asistentes de IA a la medida.",
     numero: "03",
     nombre: "IA y automatización",
     alias: "automatización",
@@ -173,6 +181,8 @@ export const DISCIPLINAS: Disciplina[] = [
   {
     id: "respaldo",
     slug: "legal-y-contable",
+    meta:
+      "Abogados y contadores propios revisan que lo que construimos cumpla con el SAT y la Ley Federal del Trabajo. Casi ninguna agencia tiene esto.",
     numero: "04",
     nombre: "Respaldo legal y contable",
     alias: "respaldo legal",
@@ -431,6 +441,8 @@ export const TAPREVIEWS = {
 export const ALCANCE = [
   {
     id: "erp-escolar",
+    meta:
+      "Tres portales por rol —administración, maestros y padres— con alumnos, inscripciones, cobros con pagos parciales, condonaciones y facturación CFDI.",
     hace: [
       "Tres portales con acceso por rol: administración, maestros y padres",
       "Alumnos con foto, maestros, tutores, ciclos, grados, grupos y materias",
@@ -506,6 +518,8 @@ export const ALCANCE = [
   },
   {
     id: "pos-comida",
+    meta:
+      "Punto de venta que cobra en mostrador y por reparto en la misma pantalla: local, WhatsApp, Uber, DiDi o Rappi, con impresión de ticket en cocina.",
     hace: [
       "Búsqueda, categorías y carrito en tiempo real",
       "Cinco canales marcados por pedido: mostrador, WhatsApp, Uber Eats, DiDi Food y Rappi",
@@ -566,6 +580,8 @@ export const ALCANCE = [
   },
   {
     id: "tienda-operacion",
+    meta:
+      "Tienda que además opera: precio por volumen en vivo, punto de venta para el mostrador, un mismo inventario para los dos canales y comisión por vendedor.",
     hace: [
       "Precio por volumen que cambia en vivo según lo que lleve el carrito",
       "Cobro con Stripe, transferencia SPEI y OXXO, con confirmación que descuenta existencias",
@@ -588,6 +604,8 @@ export const ALCANCE = [
   },
   {
     id: "tienda-moda",
+    meta:
+      "Tienda en línea de streetwear, perfumes y electrónica: catálogo por categoría y marca, variantes por producto, carrito, pago y panel de administración.",
     hace: [
       "Catálogo por categoría y marca, con variantes e imágenes por producto",
       "Buscador, ofertas, carrito y pago",
@@ -798,6 +816,8 @@ export type Pantalla = {
 
 export type Muestra = {
   id: string;
+  /** Descripción para buscadores, cuando recortar `que` queda mal escrito. */
+  meta?: string;
   titulo: string;
   sector: string;
   estado: string;
@@ -816,6 +836,7 @@ export const CON_CAPTURA: Muestra[] = ALCANCE.flatMap((x) =>
         sector: x.sector,
         estado: x.estado,
         que: x.que,
+        meta: "meta" in x ? x.meta : undefined,
         hace: "hace" in x ? x.hace : [],
         pantallas: x.pantallas,
       }]

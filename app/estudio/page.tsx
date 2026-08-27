@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AREAS, INCLUIDO, PASOS, SITE } from "@/lib/contenido";
+import Datos from "@/app/componentes/Datos";
+import { migas } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Estudio",
-  description: "Quiénes somos, cómo trabajamos y qué va incluido en cualquier proyecto de APoumian Studio.",
+  title: "El estudio y cómo trabajamos",
+  description: "Quiénes somos, cómo trabajamos y qué va incluido en cualquier proyecto: diagnóstico, propuesta cerrada por escrito y entregas por fases.",
   alternates: { canonical: "/estudio" },
 };
 
 export default function Estudio() {
   return (
     <>
+      <Datos nodos={[migas([{ nombre: "Estudio", url: "/estudio/" }])]} />
       <section className="band band--close grid-bg">
         <div className="wrap">
           <span className="label label--accent label--dash">El estudio</span>

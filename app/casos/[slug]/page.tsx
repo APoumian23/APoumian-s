@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CASOS } from "@/lib/contenido";
+import { resumen, titulo } from "@/lib/meta";
 
 export function generateStaticParams() {
   return CASOS.map((c) => ({ slug: c.slug }));
@@ -12,7 +13,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const c = CASOS.find((x) => x.slug === slug);
   if (!c) return {};
-  return { title: c.cliente, description: c.reto, alternates: { canonical: `/casos/${c.slug}` } };
+  return {
+    title: titulo(c.cliente, "caso de cliente"),
+    description: resumen(c.reto, `Caso de ${c.cliente}, cliente de APoumian Studio.`),
+    alternates: { canonical: `/casos/${c.slug}` },
+  };
 }
 
 export default async function Caso({ params }: { params: Promise<{ slug: string }> }) {

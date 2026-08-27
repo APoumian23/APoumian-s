@@ -5,6 +5,8 @@ import { MOTOR_ACCESO, MOTOR_REGISTRO } from "@/lib/enlaces";
 import Escaner from "../componentes/Escaner";
 import Rejilla from "../componentes/Rejilla";
 import BuscadorAuditoria from "../componentes/BuscadorAuditoria";
+import Datos from "@/app/componentes/Datos";
+import { migas } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Auditorías SEO",
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 export default function Auditorias() {
   return (
     <>
+      <Datos nodos={[migas([{ nombre: "Auditorías SEO", url: "/auditorias/" }])]} />
       <section className="band band--close band--deep deep grid-bg">
         <div className="wrap hero__grid">
           <div>

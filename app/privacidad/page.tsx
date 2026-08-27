@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { RESPONSABLE, SITE } from "@/lib/contenido";
 import { CORREO, MOTOR } from "@/lib/enlaces";
+import Datos from "@/app/componentes/Datos";
+import { migas } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Aviso de privacidad",
   description:
-    "Qué datos personales recaba APoumian Studio, para qué los usa y cómo ejercer tus derechos ARCO.",
+    "Qué datos personales recaba APoumian Studio, con qué finalidad los usa, con quién los comparte y cómo ejercer tus derechos ARCO.",
   alternates: { canonical: "/privacidad" },
 };
 
@@ -17,6 +19,7 @@ const ACTUALIZADO = "25 de agosto de 2026";
 export default function Privacidad() {
   return (
     <>
+      <Datos nodos={[migas([{ nombre: "Aviso de privacidad", url: "/privacidad/" }])]} />
       <section className="band band--close grid-bg">
         <div className="wrap wrap--narrow">
           <span className="label label--accent label--dash">Legal</span>

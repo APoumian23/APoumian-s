@@ -4,11 +4,13 @@ import { TAPREVIEWS } from "@/lib/contenido";
 import { wa, TAP_ACCESO } from "@/lib/enlaces";
 import Nfc from "../componentes/Nfc";
 import Rejilla from "../componentes/Rejilla";
+import Datos from "@/app/componentes/Datos";
+import { migas } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "TapReviews · Tarjetas NFC para reseñas de Google",
+  title: "TapReviews · Tarjetas NFC de reseñas",
   description:
-    "Tarjetas NFC que llevan a tus clientes directo a dejarte una reseña de Google. Suscripción mensual con el equipo incluido: panel con tus taps, reporte mensual y respuesta a tus reseñas.",
+    "Tarjetas NFC que llevan a tus clientes directo a dejarte una reseña de Google. Suscripción mensual con el equipo, panel de taps y reporte.",
   alternates: { canonical: "/tapreviews" },
 };
 
@@ -44,6 +46,7 @@ const jsonLd = {
 export default function TapReviewsPage() {
   return (
     <>
+      <Datos nodos={[migas([{ nombre: "TapReviews", url: "/tapreviews/" }])]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <section className="band band--close grid-bg">

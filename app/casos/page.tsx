@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ALCANCE, CON_CAPTURA, AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, TAPREVIEWS } from "@/lib/contenido";
 import Rejilla from "../componentes/Rejilla";
+import Datos from "@/app/componentes/Datos";
+import { migas } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Casos",
+  title: "Casos y portafolio de trabajo",
   description:
     "Proyectos entregados, productos propios y el código con el que se construyeron. Los sitios de clientes están en línea y puedes abrirlos.",
   alternates: { canonical: "/casos" },
@@ -16,6 +18,7 @@ const GRUPOS = [...new Set(ALCANCE.map((x) => x.grupo))];
 export default function Casos() {
   return (
     <>
+      <Datos nodos={[migas([{ nombre: "Casos", url: "/casos/" }])]} />
       <section className="band band--close grid-bg">
         <div className="wrap">
           <span className="label label--accent label--dash">Casos</span>

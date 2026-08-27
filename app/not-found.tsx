@@ -4,6 +4,10 @@ import { NAV } from "@/lib/contenido";
 
 export const metadata: Metadata = {
   title: "Página no encontrada",
+  /* Propia y no la heredada de la portada: dos páginas con la misma
+     descripción es señal de contenido duplicado, aunque esta no se indexe. */
+  description:
+    "Esa dirección no existe o cambió de lugar. Desde aquí puedes volver al inicio o ir directo a servicios, casos o contacto.",
   robots: { index: false, follow: true },
 };
 

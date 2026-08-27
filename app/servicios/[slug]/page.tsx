@@ -5,6 +5,7 @@ import { DISCIPLINAS, PASOS } from "@/lib/contenido";
 import { wa } from "@/lib/enlaces";
 import EnVista from "../../componentes/EnVista";
 import Ilustracion from "../../componentes/ilustraciones";
+import { resumen, titulo } from "@/lib/meta";
 
 export function generateStaticParams() {
   return DISCIPLINAS.map((d) => ({ slug: d.slug }));
@@ -15,8 +16,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const d = DISCIPLINAS.find((x) => x.slug === slug);
   if (!d) return {};
   return {
-    title: d.nombre,
-    description: d.cuerpo,
+    title: titulo(d.nombre, "servicios"),
+    description: d.meta ?? resumen(d.cuerpo),
     alternates: { canonical: `/servicios/${d.slug}` },
   };
 }

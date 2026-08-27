@@ -1460,3 +1460,15 @@ a { color: inherit; text-decoration: none; }
 .disc-card:hover, .disc-card:focus-within { background: var(--color-paper-2); }
 .ficha[data-clic]:hover, .ficha[data-clic]:focus-within { background: var(--color-paper-2); }
 .disc-card:hover .link, .prod:hover .link, .ficha[data-clic]:hover .link { color: var(--color-accent-deep); }
+
+/* Aviso para quien navega sin JavaScript. Se ve como una barra de sistema,
+   no como parte del diseño: es una excepción, no contenido. */
+.noscript {
+  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface-deep);
+  color: var(--color-ink-on-deep);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+.noscript a { color: var(--color-accent-lift); }

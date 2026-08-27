@@ -3,9 +3,11 @@ import Link from "next/link";
 import Rejilla from "../componentes/Rejilla";
 import Ilustracion from "../componentes/ilustraciones";
 import { DISCIPLINAS } from "@/lib/contenido";
+import Datos from "@/app/componentes/Datos";
+import { migas } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Servicios",
+  title: "Servicios de tecnología, ads e IA",
   description: "Los 20 servicios de APoumian Studio, agrupados en cuatro disciplinas: producto digital, crecimiento, IA y automatización, y respaldo legal y contable.",
   alternates: { canonical: "/servicios" },
 };
@@ -13,6 +15,7 @@ export const metadata: Metadata = {
 export default function Servicios() {
   return (
     <>
+      <Datos nodos={[migas([{ nombre: "Servicios", url: "/servicios/" }])]} />
       <section className="band band--close grid-bg">
         <div className="wrap">
           <span className="label label--accent label--dash">Catálogo</span>

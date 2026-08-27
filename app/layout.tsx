@@ -1,18 +1,24 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, JetBrains_Mono, Bodoni_Moda } from "next/font/google";
 import { SITE } from "@/lib/contenido";
+import { TEL } from "@/lib/enlaces";
 import Nav from "./componentes/Nav";
 import Pie from "./componentes/Pie";
 import BotonWhatsApp from "./componentes/BotonWhatsApp";
 import ObservadorRevela from "./componentes/ObservadorRevela";
+import Datos from "./componentes/Datos";
+import { negocio, sitio } from "@/lib/schema";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], weight: ["400", "500", "600"], display: "swap", variable: "--font-geist" });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400"], display: "swap", variable: "--font-mono" });
 const bodoni = Bodoni_Moda({ subsets: ["latin"], weight: ["500"], style: ["normal"], display: "swap", variable: "--font-bodoni" });
 
+/* Máximo 158 caracteres: pasado ese punto Google la trunca con puntos
+   suspensivos y la última idea —la que suele traer el diferenciador— se
+   pierde. La anterior medía 192 y se cortaba justo antes de "legal". */
 const descripcion =
-  "Agencia de tecnología e IA en Celaya, Guanajuato. Sitios, tiendas, apps y sistemas a la medida; Google y Meta Ads; asistentes de IA y automatización — con respaldo legal y contable propio.";
+  "Agencia de tecnología e IA en Celaya, Guanajuato: sitios, apps y sistemas a la medida, Google y Meta Ads, asistentes de IA y respaldo legal y contable.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.dominio),
@@ -29,9 +35,19 @@ export const metadata: Metadata = {
     siteName: SITE.nombre,
     title: "APoumian Studio · Toda tu presencia digital, con un solo equipo",
     description: descripcion,
+    /* Sin esto, WhatsApp y LinkedIn eligen solos qué imagen mostrar al pegar
+       un enlace nuestro —y normalmente eligen nada. Se hereda a todas las
+       páginas; la que quiera otra la sobrescribe. */
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: SITE.nombre }],
   },
-  twitter: { card: "summary_large_image", title: "APoumian Studio", description: descripcion },
+  twitter: {
+    card: "summary_large_image",
+    title: "APoumian Studio",
+    description: descripcion,
+    images: ["/og.png"],
+  },
   icons: { icon: "/favicon.png", apple: "/favicon.png" },
+  manifest: "/manifest.webmanifest",
   robots: { index: true, follow: true },
 };
 
@@ -68,7 +84,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: "document.documentElement.setAttribute('data-js','')",
           }}
         />
+        {/* Quién es este negocio y dónde está. Va en el layout para que salga
+            en las 23 páginas: un buscador que llega directo a una interna
+            necesita el dato ahí, no solo en el inicio. */}
+        <Datos nodos={[negocio, sitio]} />
         <a className="skip" href="#contenido">Saltar al contenido</a>
+        {/* Sin JavaScript la página se ve completa —las animaciones cuelgan de
+            `data-js`— pero el formulario de auditoría no corre. Vale decirlo
+            en vez de dejar a alguien picando un botón muerto. */}
+        <noscript>
+          <p className="noscript">
+            Esta página funciona sin JavaScript, pero el buscador de auditorías
+            necesita activarlo. Si prefieres no hacerlo, escríbenos por WhatsApp
+            al <a href={`tel:+${TEL}`}>461 180 1622</a>.
+          </p>
+        </noscript>
         <Nav />
         <main id="contenido">{children}</main>
         <ObservadorRevela />
