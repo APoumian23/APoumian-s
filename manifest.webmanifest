@@ -1,0 +1,14 @@
+{
+  "name": "APoumian Studio",
+  "short_name": "APoumian",
+  "description": "Agencia de tecnología e IA en Celaya, Guanajuato.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4EDE1",
+  "theme_color": "#F4EDE1",
+  "lang": "es-MX",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" },
+    { "src": "/marca/isotipo-marino.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
