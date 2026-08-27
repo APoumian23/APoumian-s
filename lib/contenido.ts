@@ -619,8 +619,8 @@ export const ALCANCE = [
       "Panel con agenda, reservas, tours, cupones y contenido",
     ],
     pantallas: [
-      { src: "/sistemas/reservas-turismo-2.webp", alt: "Catálogo de tours con foto de cada destino y precio por lancha completa, no por persona." },
       { src: "/sistemas/tours-reservas.webp", alt: "Portada del sitio de tours: foto de la bahía, selector de idioma, botón de reservar y cotización por WhatsApp." },
+      { src: "/sistemas/reservas-turismo-2.webp", alt: "Catálogo de tours con foto de cada destino y precio por lancha completa, no por persona." },
     ],
     grupo: "Sitios que hacen algo más",
     titulo: "Reservas con anticipo",
