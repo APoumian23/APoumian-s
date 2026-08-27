@@ -3,6 +3,7 @@ import { Geist, JetBrains_Mono, Bodoni_Moda } from "next/font/google";
 import { SITE } from "@/lib/contenido";
 import Nav from "./componentes/Nav";
 import Pie from "./componentes/Pie";
+import BotonWhatsApp from "./componentes/BotonWhatsApp";
 import ObservadorRevela from "./componentes/ObservadorRevela";
 import "./globals.css";
 
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="contenido">{children}</main>
         <ObservadorRevela />
         <Pie />
+        <BotonWhatsApp />
       </body>
     </html>
   );

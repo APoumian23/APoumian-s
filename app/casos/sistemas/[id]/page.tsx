@@ -80,7 +80,7 @@ export default async function Sistema({ params }: { params: Promise<{ id: string
             {pantallas.map((p) => (
               <figure className="galeria__i" key={p.src}>
                 <img className="muestra__img" src={p.src} alt={p.alt} width={1400} height={875} decoding="async" />
-                <figcaption className="muestra__cap label"><span>{p.alt.split(":")[0]}</span></figcaption>
+                <figcaption className="muestra__cap label"><span>{p.pie}</span></figcaption>
               </figure>
             ))}
           </div>

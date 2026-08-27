@@ -40,9 +40,11 @@ export default async function Disciplina({ params }: { params: Promise<{ slug: s
           <p className="lede" style={{ marginBottom: "var(--space-xl)" }}>{d.cuerpo}</p>
           <div className="hero__actions">
             <Link className="btn" href="/contacto">Pedir un diagnóstico</Link>
+            {/* El nombre va tal cual, sin `toLowerCase`: lo convertía en
+                "ia y automatización" y así le llegaba el mensaje a WhatsApp. */}
             <a
               className="link"
-              href={wa(`Hola, me interesa ${d.nombre.toLowerCase()} para mi negocio.`)}
+              href={wa(`Hola, me interesa ${d.nombre} para mi negocio.`)}
               target="_blank"
               rel="noopener noreferrer"
             >

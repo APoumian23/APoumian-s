@@ -53,7 +53,15 @@ AVISO
 fi
 
 echo "→ Compilando…"
-pnpm exec next build >/dev/null
+# La salida del build se silencia porque son cien líneas de rutas, pero el
+# fallo NO puede silenciarse: con `set -e` el script aborta sin decir nada, y
+# quien redirige la salida se queda con el sitio anterior creyendo que publicó.
+if ! pnpm exec next build > /tmp/publicar-build.log 2>&1; then
+  echo "✗ La compilación falló. No se tocó nada de lo publicado." >&2
+  echo "  Últimas líneas del error:" >&2
+  tail -20 /tmp/publicar-build.log >&2
+  exit 1
+fi
 
 ORIGEN=".next-build"
 [ -f "$ORIGEN/index.html" ] || { echo "✗ La exportación no tiene index.html. Aborto."; exit 1; }

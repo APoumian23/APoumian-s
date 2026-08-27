@@ -154,7 +154,7 @@ export default function Inicio() {
                 />
               </picture>
               <figcaption className="muestra__cap label">
-                <span>{DESTACADA.titulo} · datos de demostración</span>
+                <span>{DESTACADA.pantallas[0].pie} · demostración</span>
                 <Link className="link" href="/casos/#sis-t">Ver los {ALCANCE.length} →</Link>
               </figcaption>
             </figure>

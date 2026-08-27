@@ -443,28 +443,48 @@ a { color: inherit; text-decoration: none; }
 @media (min-width: 40rem) { .form__pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .field { display: grid; gap: var(--space-2xs); }
 .field--select { position: relative; }
+/* La flecha vive DENTRO de la caja clara desde que los campos dejaron de ser
+ * transparentes, así que va en tinta y no en el dorado que se usaba sobre el
+ * fondo oscuro. Se separa del borde derecho lo que mide el relleno. */
 .field--select::after {
-  content: ""; position: absolute; right: 0.35rem; bottom: 1.25rem;
+  content: ""; position: absolute; right: var(--space-md); bottom: 1.4rem;
   width: 0.45rem; height: 0.45rem;
-  border-right: var(--rule-bold) solid var(--color-accent-lift);
-  border-bottom: var(--rule-bold) solid var(--color-accent-lift);
+  border-right: var(--rule-bold) solid var(--color-ink-2);
+  border-bottom: var(--rule-bold) solid var(--color-ink-2);
   transform: rotate(45deg); pointer-events: none;
 }
 .field__label { font-family: var(--font-label); font-size: var(--text-xs); letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-muted-on-deep); }
+/* Campos como cajas claras sobre la sección oscura.
+ *
+ * Antes eran transparentes con una línea de un píxel abajo. En pantalla grande
+ * se adivinaban; en un teléfono, sobre fondo azul marino, el campo no existía
+ * hasta tocarlo. "No sé dónde escribir" no es una queja de gusto: es que no se
+ * veía dónde.
+ *
+ * La caja clara resuelve las dos cosas a la vez —dice dónde escribir y aligera
+ * la sección— sin voltear las 34 reglas que dependen del fondo oscuro. */
 .field__input, .field__select, .field__area {
-  width: 100%; min-height: 44px; background: transparent; color: var(--color-ink-on-deep);
-  border: 0; border-bottom: var(--rule-hair) solid var(--color-rule-deep);
-  border-radius: var(--radius-none); padding: var(--space-sm) 0;
+  width: 100%; min-height: 48px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
   font-family: var(--font-body); font-size: var(--text-base);
-  transition: border-color var(--dur-micro) var(--ease-out);
+  transition: border-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
 }
 .field__area { min-height: 6rem; resize: vertical; line-height: 1.55; }
 .field__select { appearance: none; padding-right: var(--space-xl); cursor: pointer; }
-.field__select option { background: var(--color-surface-deep); color: var(--color-ink-on-deep); }
-.field__input::placeholder, .field__area::placeholder { color: var(--color-muted-on-deep); opacity: 1; }
-.field__input:hover, .field__area:hover, .field__select:hover { border-bottom-color: var(--color-ink-on-deep-2); }
-.field__input:focus, .field__area:focus, .field__select:focus { border-bottom-color: var(--color-accent-lift); }
-.field__input[aria-invalid="true"], .field__area[aria-invalid="true"] { border-bottom-color: var(--color-error-deep); }
+.field__select option { background: var(--color-paper); color: var(--color-ink); }
+.field__input::placeholder, .field__area::placeholder { color: var(--color-muted); opacity: 1; }
+.field__input:hover, .field__area:hover, .field__select:hover { border-color: var(--color-ink-2); }
+.field__input:focus-visible, .field__area:focus-visible, .field__select:focus-visible {
+  border-color: var(--color-accent-deep);
+  /* El halo se ve sobre el papel; el cambio de borde solo, no. */
+  box-shadow: 0 0 0 3px var(--color-focus);
+  outline: none;
+}
+.field__input[aria-invalid="true"], .field__area[aria-invalid="true"] { border-color: var(--color-error); }
 .field__input:disabled, .field__area:disabled, .field__select:disabled { opacity: 0.55; cursor: not-allowed; }
 .field__error { font-size: var(--text-sm); line-height: 1.4; color: var(--color-error-deep); }
 .field--valida .field__error { min-height: 1lh; }
@@ -1262,7 +1282,10 @@ a { color: inherit; text-decoration: none; }
   .foot__link,
   .nav__link,
   .cod__lang,
-  .vivo__a {
+  .vivo__a,
+  /* Las cifras enlazadas de la portada. Se les olvidó al añadirlas y medían
+     38px: por debajo del pulgar, y sin aviso porque el número se ve grande. */
+  .stat__l {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
@@ -1367,3 +1390,42 @@ a { color: inherit; text-decoration: none; }
  * y a media columna se pierde el detalle que justifica enseñarlas. */
 .galeria--una { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 48rem) { .galeria--una { grid-template-columns: minmax(0, 1fr); } }
+
+/* ── Botón fijo de WhatsApp ─────────────────────────────────────────────────
+ * Va por debajo del menú fijo (--z-sticky-nav) y por encima del contenido: si
+ * quedara arriba del menú, taparía "Menú" al abrirlo en un teléfono.
+ *
+ * `env(safe-area-inset-bottom)` lo levanta de la barra del navegador en un
+ * iPhone; sin eso, en Safari el botón queda medio tapado y no se puede tocar.
+ *
+ * En pantalla ancha muestra la palabra; en teléfono solo el icono, para no
+ * comerse el ancho justo cuando menos sobra. */
+.wapp {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: calc(var(--space-lg) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--z-sticky);
+  display: inline-flex; align-items: center; gap: var(--space-xs);
+  min-height: 52px; min-width: 52px;
+  padding: 0 var(--space-md);
+  border-radius: 999px;
+  background: #25D366;           /* el verde de la marca WhatsApp, no del sitio */
+  color: #0B1F12;                /* tinta oscura: 8.6:1 sobre ese verde */
+  text-decoration: none;
+  font-family: var(--font-label); font-size: var(--text-sm); font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.22);
+  transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+}
+.wapp:hover, .wapp:focus-visible { transform: translateY(-2px); box-shadow: 0 10px 26px rgb(0 0 0 / 0.28); }
+.wapp:focus-visible { outline: var(--rule-bold) solid var(--color-accent-deep); outline-offset: 3px; }
+.wapp__i { width: 26px; height: 26px; flex: none; }
+
+/* En teléfono, solo el icono. El nombre no aporta: el logotipo de WhatsApp se
+ * reconoce, y el ancho hace falta para el contenido. */
+.wapp__t { display: none; }
+@media (min-width: 48rem) { .wapp__t { display: inline; } }
+@media (max-width: 47.99rem) { .wapp { padding: 0; justify-content: center; } }
+
+/* Quien no quiere animación tampoco la quiere aquí. */
+@media (prefers-reduced-motion: reduce) { .wapp { transition: none; } .wapp:hover { transform: none; } }

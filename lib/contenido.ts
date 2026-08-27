@@ -442,9 +442,9 @@ export const ALCANCE = [
       "Los maestros capturan calificaciones; los padres consultan estado de cuenta y pagan",
     ],
     pantallas: [
-      { src: "/sistemas/erp-escolar-2.webp", alt: "Pagos y cobros: 164 adeudos del ciclo con su saldo total, filtros por estado y concepto, y el detalle por alumno con fecha de vencimiento." },
-      { src: "/sistemas/erp-escolar-3.webp", alt: "Base de alumnos con foto, matrícula, CURP y teléfono, con búsqueda por cualquiera de esos campos." },
-      { src: "/sistemas/erp-escolar.webp", alt: "Portal administrativo del ERP escolar: alumnos inscritos, maestros activos, adeudos abiertos y próximos vencimientos de colegiatura." },
+      { src: "/sistemas/erp-escolar-2.webp", alt: "Pagos y cobros: 164 adeudos del ciclo con su saldo total, filtros por estado y concepto, y el detalle por alumno con fecha de vencimiento.", pie: "Cobros del ciclo" },
+      { src: "/sistemas/erp-escolar-3.webp", alt: "Base de alumnos con foto, matrícula, CURP y teléfono, con búsqueda por cualquiera de esos campos.", pie: "Base de alumnos" },
+      { src: "/sistemas/erp-escolar.webp", alt: "Portal administrativo del ERP escolar: alumnos inscritos, maestros activos, adeudos abiertos y próximos vencimientos de colegiatura.", pie: "Resumen del colegio" },
     ],
     grupo: "Gestión y operación",
     titulo: "ERP escolar",
@@ -473,8 +473,8 @@ export const ALCANCE = [
       "Bitácora de auditoría: quién movió qué y cuándo",
     ],
     pantallas: [
-      { src: "/sistemas/ventas-calle.webp", alt: "Jerarquía del equipo de ventas: dirección, gerentes por región y supervisores por ciudad, con sus subordinados y saldos." },
-      { src: "/sistemas/ventas-calle-2.webp", alt: "Inventario por zona: Apaseo el Grande, Celaya, Cortazar, Guanajuato Capital, Salamanca y Uriangato, cada una con sus vendedores y sus unidades en existencia." },
+      { src: "/sistemas/ventas-calle.webp", alt: "Jerarquía del equipo de ventas: dirección, gerentes por región y supervisores por ciudad, con sus subordinados y saldos.", pie: "Jerarquía del equipo" },
+      { src: "/sistemas/ventas-calle-2.webp", alt: "Inventario por zona: Apaseo el Grande, Celaya, Cortazar, Guanajuato Capital, Salamanca y Uriangato, cada una con sus vendedores y sus unidades en existencia.", pie: "Inventario por zona" },
     ],
     grupo: "Gestión y operación",
     titulo: "Ventas y vendedores en calle",
@@ -495,8 +495,8 @@ export const ALCANCE = [
       "Funciona sin señal y sincroniza al volver",
     ],
     pantallas: [
-      { src: "/sistemas/campo-2.webp", alt: "Maquinaria con su costo real por hora y la vida útil consumida de cada equipo, con aviso cuando toca revisar el reemplazo." },
-      { src: "/sistemas/campo-cotizador.webp", alt: "Cotizador de servicios en campo: catálogo por categoría con precios, y desglose con costos internos de insumos, traslado y depreciación para calcular el margen real." },
+      { src: "/sistemas/campo-2.webp", alt: "Maquinaria con su costo real por hora y la vida útil consumida de cada equipo, con aviso cuando toca revisar el reemplazo.", pie: "Maquinaria" },
+      { src: "/sistemas/campo-cotizador.webp", alt: "Cotizador de servicios en campo: catálogo por categoría con precios, y desglose con costos internos de insumos, traslado y depreciación para calcular el margen real.", pie: "Cotizador" },
     ],
     grupo: "Gestión y operación",
     titulo: "Operación en campo",
@@ -517,8 +517,8 @@ export const ALCANCE = [
       "Funciona en celular, tableta y computadora, sin servidor",
     ],
     pantallas: [
-      { src: "/sistemas/pos-comida-2.webp", alt: "Reporte del día: ventas totales, pedidos, ticket promedio y el desglose por canal —mostrador, WhatsApp, Uber Eats, DiDi y Rappi— con el porcentaje de cada uno." },
-      { src: "/sistemas/pos-polleria.webp", alt: "Punto de venta de comida: catálogo por categoría, canal de venta —local, WhatsApp, Uber, DiDi, Rappi— y el pedido en curso con su total." },
+      { src: "/sistemas/pos-comida-2.webp", alt: "Reporte del día: ventas totales, pedidos, ticket promedio y el desglose por canal —mostrador, WhatsApp, Uber Eats, DiDi y Rappi— con el porcentaje de cada uno.", pie: "Reporte por canal" },
+      { src: "/sistemas/pos-polleria.webp", alt: "Punto de venta de comida: catálogo por categoría, canal de venta —local, WhatsApp, Uber, DiDi, Rappi— y el pedido en curso con su total.", pie: "Punto de venta" },
     ],
     grupo: "Gestión y operación",
     titulo: "Punto de venta para comida",
@@ -539,8 +539,8 @@ export const ALCANCE = [
       "Un negocio por organización, cada uno con su plan y su periodo de prueba",
     ],
     pantallas: [
-      { src: "/sistemas/autolavados-tablero.webp", alt: "Tablero del autolavado: ingresos del día, órdenes, reservas próximas con vehículo y placa, y membresías por vencer.", movil: "/sistemas/autolavados-detalle.webp" },
-      { src: "/sistemas/autolavados-2.webp", alt: "Punto de venta del autolavado: catálogo de servicios con duración y precio, y la orden en curso con cliente, vehículo, promoción y método de pago." },
+      { src: "/sistemas/autolavados-tablero.webp", alt: "Tablero del autolavado: ingresos del día, órdenes, reservas próximas con vehículo y placa, y membresías por vencer.", pie: "Tablero del día", movil: "/sistemas/autolavados-detalle.webp" },
+      { src: "/sistemas/autolavados-2.webp", alt: "Punto de venta del autolavado: catálogo de servicios con duración y precio, y la orden en curso con cliente, vehículo, promoción y método de pago.", pie: "Punto de venta" },
     ],
     grupo: "Gestión y operación",
     titulo: "Gestión para autolavados",
@@ -577,8 +577,8 @@ export const ALCANCE = [
       "Cuatro roles: administrador, vendedor, almacenista y cliente",
     ],
     pantallas: [
-      { src: "/sistemas/tienda-operacion-2.webp", alt: "Comisiones por vendedor: generadas, pagadas y por pagar, con las ventas atribuidas y el detalle de cada comisión con su porcentaje y estado." },
-      { src: "/sistemas/tienda-inventario.webp", alt: "Inventario de la tienda: variantes activas, unidades en bodega, valor al costo y movimientos recientes por venta." },
+      { src: "/sistemas/tienda-operacion-2.webp", alt: "Comisiones por vendedor: generadas, pagadas y por pagar, con las ventas atribuidas y el detalle de cada comisión con su porcentaje y estado.", pie: "Comisiones y nómina" },
+      { src: "/sistemas/tienda-inventario.webp", alt: "Inventario de la tienda: variantes activas, unidades en bodega, valor al costo y movimientos recientes por venta.", pie: "Inventario" },
     ],
     grupo: "Tiendas en línea",
     titulo: "Tienda con operación completa",
@@ -598,8 +598,8 @@ export const ALCANCE = [
       "Panel para productos, pedidos, cupones, banners, envíos e imágenes",
     ],
     pantallas: [
-      { src: "/sistemas/tienda-moda-2.webp", alt: "Catálogo de productos con foto, categoría, precio, existencia y estado: visible, bajo pedido, poco stock o agotado." },
-      { src: "/sistemas/tienda-moda.webp", alt: "Resumen de la tienda: productos activos, piezas en inventario, piezas con poco stock y agotados." },
+      { src: "/sistemas/tienda-moda-2.webp", alt: "Catálogo de productos con foto, categoría, precio, existencia y estado: visible, bajo pedido, poco stock o agotado.", pie: "Catálogo" },
+      { src: "/sistemas/tienda-moda.webp", alt: "Resumen de la tienda: productos activos, piezas en inventario, piezas con poco stock y agotados.", pie: "Resumen de la tienda" },
     ],
     grupo: "Tiendas en línea",
     titulo: "Tienda de moda y tecnología",
@@ -619,8 +619,8 @@ export const ALCANCE = [
       "Panel con agenda, reservas, tours, cupones y contenido",
     ],
     pantallas: [
-      { src: "/sistemas/tours-reservas.webp", alt: "Portada del sitio de tours: foto de la bahía, selector de idioma, botón de reservar y cotización por WhatsApp." },
-      { src: "/sistemas/reservas-turismo-2.webp", alt: "Catálogo de tours con foto de cada destino y precio por lancha completa, no por persona." },
+      { src: "/sistemas/tours-reservas.webp", alt: "Portada del sitio de tours: foto de la bahía, selector de idioma, botón de reservar y cotización por WhatsApp.", pie: "Portada" },
+      { src: "/sistemas/reservas-turismo-2.webp", alt: "Catálogo de tours con foto de cada destino y precio por lancha completa, no por persona.", pie: "Catálogo de tours" },
     ],
     grupo: "Sitios que hacen algo más",
     titulo: "Reservas con anticipo",
@@ -787,7 +787,11 @@ export const CASOS = [
  * la consumen sin ceremonia. */
 export type Pantalla = {
   src: string;
+  /** Descripción larga, para lector de pantalla. No se pinta. */
   alt: string;
+  /** Pie visible. Corto a propósito: va en mayúsculas con tracking, y así una
+   *  frase de 97 caracteres ocupaba tres renglones ilegibles en un teléfono. */
+  pie: string;
   /** Recorte legible para pantalla angosta. Solo la que va grande lo necesita. */
   movil?: string;
 };
