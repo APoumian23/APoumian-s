@@ -236,14 +236,14 @@ export default function Inicio() {
               <h3 className="prod__t">Auditorías SEO</h3>
               <p className="prod__d">{AUDITORIAS.que}</p>
               <p className="prod__p">Desde ${AUDITORIAS.planes[0].precio} MXN al mes</p>
-              <p><Link className="link" href="/auditorias">Ver los planes →</Link></p>
+              <p className="prod__go"><Link className="link" href="/auditorias">Ver los planes →</Link></p>
             </article>
 
             <article className="prod">
               <h3 className="prod__t">{TAPREVIEWS.nombre}</h3>
               <p className="prod__d">{TAPREVIEWS.que}</p>
               <p className="prod__p">Suscripción mensual · equipo incluido</p>
-              <p><Link className="link" href="/tapreviews">Ver TapReviews →</Link></p>
+              <p className="prod__go"><Link className="link" href="/tapreviews">Ver TapReviews →</Link></p>
             </article>
           </Revela>
         </div>

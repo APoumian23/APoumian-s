@@ -1429,3 +1429,34 @@ a { color: inherit; text-decoration: none; }
 
 /* Quien no quiere animación tampoco la quiere aquí. */
 @media (prefers-reduced-motion: reduce) { .wapp { transition: none; } .wapp:hover { transform: none; } }
+
+/* ── Tarjeta entera como enlace ─────────────────────────────────────────────
+ * Quien quiere entrar a una tarjeta hace clic en la tarjeta, no en las tres
+ * palabras subrayadas del final. Se estira el área del enlace con un
+ * pseudo-elemento en lugar de envolver todo en un <a>: así el marcado sigue
+ * teniendo UN enlace con su texto —lo que lee un lector de pantalla— y no un
+ * bloque anónimo con titulares y párrafos dentro.
+ *
+ * Solo se aplica donde hay un único destino. Con dos zonas encimadas el
+ * visitante no sabe a dónde va a caer.
+ *
+ * El texto queda por encima del área para que se pueda seleccionar; sin eso,
+ * arrastrar sobre la tarjeta no marca nada. */
+.disc-card, .prod, .ficha[data-clic] { position: relative; }
+
+.disc-card__go .link::after,
+.prod__go .link::after,
+.ficha[data-clic] .ficha__pie .link::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  border-radius: inherit;
+}
+
+.disc-card > *:not(.disc-card__go),
+.prod > *:not(.prod__go),
+.ficha[data-clic] > *:not(.ficha__pie) { position: relative; z-index: 2; }
+
+/* Al apuntar cualquier parte, la tarjeta responde: sin eso nada avisa que es
+ * tocable entera. `focus-within` cubre a quien navega con teclado. */
+.disc-card:hover, .disc-card:focus-within { background: var(--color-paper-2); }
+.ficha[data-clic]:hover, .ficha[data-clic]:focus-within { background: var(--color-paper-2); }
+.disc-card:hover .link, .prod:hover .link, .ficha[data-clic]:hover .link { color: var(--color-accent-deep); }

@@ -45,7 +45,15 @@ export default function Rejilla({
   return (
     <ul className="rejilla" data-cols={columnas}>
       {fichas.map((f) => (
-        <li className="ficha" key={f.id} data-destacada={f.destacada ? "" : undefined}>
+        // `data-clic` hace que TODA la tarjeta lleve al enlace, no solo su texto.
+        // Solo cuando hay un único destino: con botón de acción encima serían
+        // dos zonas de clic encimadas y el visitante no sabría a dónde va.
+        <li
+          className="ficha"
+          key={f.id}
+          data-destacada={f.destacada ? "" : undefined}
+          data-clic={f.href && !f.accion ? "" : undefined}
+        >
           <span className="ficha__n">{f.numero}</span>
 
           {f.cara && <span className="ficha__cara">{f.cara}</span>}
