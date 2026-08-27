@@ -64,7 +64,7 @@ export default function TapReviewsPage() {
               {/* Quien ya es cliente no viene a que le vendan: viene a ver sus
                   taps. Sin este enlace tendría que escribir la dirección de
                   memoria o preguntarla cada mes. */}
-              <a className="link" href={TAP_ACCESO} target="_blank" rel="noopener noreferrer">
+              <a className="link" href={TAP_ACCESO}>
                 Ya soy cliente: entrar a mi panel
               </a>
             </div>

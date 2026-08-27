@@ -56,12 +56,12 @@ export default function Pie() {
               <li><Link className="foot__link" href="/auditorias">Auditorías SEO</Link></li>
               <li><Link className="foot__link" href="/tapreviews">TapReviews</Link></li>
               <li>
-                <a className="foot__link" href={MOTOR} target="_blank" rel="noopener noreferrer">
+                <a className="foot__link" href={MOTOR}>
                   Entrar a auditorías ↗
                 </a>
               </li>
               <li>
-                <a className="foot__link" href={TAP_ACCESO} target="_blank" rel="noopener noreferrer">
+                <a className="foot__link" href={TAP_ACCESO}>
                   Panel de TapReviews ↗
                 </a>
               </li>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { esNuestro } from "@/lib/enlaces";
 
 export type Ficha = {
   id: string;
@@ -19,6 +20,8 @@ export type Ficha = {
   href?: string;
   hrefTexto?: string;
   /** Botón de acción. Una tarjeta de precio sin él no sirve de nada. */
+  /** `externo` ya no decide si abre pestaña: eso sale de la dirección.
+   *  Se conserva porque marca el enlace con la flecha de salida. */
   accion?: { texto: string; href: string; externo?: boolean };
   /** Texto en lugar de la cifra, cuando el precio no está definido. */
   cifraPendiente?: string;
@@ -83,12 +86,15 @@ export default function Rejilla({
               cosas que más delatan un maquetado descuidado. */}
           <span className="ficha__pie">
             {f.accion && (
-              f.accion.externo ? (
+              /* Abre pestaña nueva solo lo que de verdad es de fuera. Nuestros
+                 subdominios navegan aquí mismo: son el mismo negocio, y abrir una
+                 pestaña por clic dejaba al visitante con cinco iguales. */
+              esNuestro(f.accion.href) ? (
+                <Link className="btn ficha__btn" href={f.accion.href}>{f.accion.texto}</Link>
+              ) : (
                 <a className="btn ficha__btn" href={f.accion.href} target="_blank" rel="noopener noreferrer">
                   {f.accion.texto}
                 </a>
-              ) : (
-                <Link className="btn ficha__btn" href={f.accion.href}>{f.accion.texto}</Link>
               )
             )}
             {f.href && (

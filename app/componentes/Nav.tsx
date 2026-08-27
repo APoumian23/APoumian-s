@@ -40,13 +40,10 @@ export default function Nav() {
 
         <div className="nav__end">
           {/* El sitio no tiene cuentas propias: la sesión es la del motor de
-              auditorías, que vive en su propio subdominio. */}
-          <a
-            className="btn btn--ghost nav__cta"
-            href={MOTOR_ACCESO}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+              auditorías, que vive en su propio subdominio. Se navega en la
+              misma pestaña: es el mismo negocio, y el motor tiene su propio
+              enlace de regreso. Con pestaña nueva se juntaban cinco iguales. */}
+          <a className="btn btn--ghost nav__cta" href={MOTOR_ACCESO}>
             Iniciar sesión
           </a>
           <Link className="btn nav__cta" href="/contacto">Hablemos</Link>
@@ -70,7 +67,7 @@ export default function Nav() {
                 {n.texto}
               </Link>
             ))}
-            <a className="btn btn--ghost" href={MOTOR_ACCESO} target="_blank" rel="noopener noreferrer">
+            <a className="btn btn--ghost" href={MOTOR_ACCESO}>
               Iniciar sesión en auditorías
             </a>
             <Link className="btn" href="/contacto">Hablemos</Link>

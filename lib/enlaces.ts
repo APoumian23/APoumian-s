@@ -22,3 +22,24 @@ export const CORREO = process.env.NEXT_PUBLIC_EMAIL ?? "hola@apoumian.com";
 export const wa = (texto: string) => `https://wa.me/${TEL}?text=${encodeURIComponent(texto)}`;
 
 export const WA_GENERAL = wa("Hola, vi apoumian.com y quiero platicar de un proyecto para mi negocio.");
+
+/**
+ * ¿Esta dirección es de la casa?
+ *
+ * apoumian.com y sus subdominios —auditorias., tapreviews.— son el mismo
+ * negocio y la misma marca aunque técnicamente sean otro origen. Se navega a
+ * ellos en la misma pestaña: abrir una nueva por cada clic dejaba al visitante
+ * con cinco pestañas idénticas y sin saber cuál era cuál.
+ *
+ * Lo de fuera sí abre aparte: WhatsApp porque cambia de aplicación, y los
+ * sitios de clientes porque no queremos sacar a nadie del nuestro.
+ */
+export function esNuestro(href: string): boolean {
+  try {
+    const host = new URL(href, "https://apoumian.com").hostname;
+    return host === "apoumian.com" || host.endsWith(".apoumian.com");
+  } catch {
+    // Una ruta relativa o algo raro: se trata como propio, que es lo seguro.
+    return true;
+  }
+}

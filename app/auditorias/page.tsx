@@ -36,7 +36,7 @@ export default function Auditorias() {
           <BuscadorAuditoria />
 
           <p style={{ marginTop: "var(--space-lg)" }}>
-            <a className="link" href={MOTOR_ACCESO} target="_blank" rel="noopener noreferrer">
+            <a className="link" href={MOTOR_ACCESO}>
               Ya tengo cuenta, entrar ↗
             </a>
           </p>

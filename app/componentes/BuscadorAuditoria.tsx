@@ -384,7 +384,7 @@ export default function BuscadorAuditoria() {
                   : "Nada que arreglar en los puntos que fallan o avisan. Crea tu cuenta para ver el detalle y comparar contra la próxima corrida."}
               </p>
               <p className="res__muro-a">
-                <a className="btn" href={`${MOTOR}/registro`} target="_blank" rel="noopener noreferrer">
+                <a className="btn" href={`${MOTOR}/registro`}>
                   Ver qué está mal ↗
                 </a>
               </p>
