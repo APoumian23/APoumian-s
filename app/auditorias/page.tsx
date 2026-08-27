@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AUDITORIAS } from "@/lib/contenido";
-import { MOTOR_ACCESO, MOTOR_REGISTRO } from "@/lib/enlaces";
+import { MOTOR, MOTOR_ACCESO, MOTOR_REGISTRO } from "@/lib/enlaces";
 import Escaner from "../componentes/Escaner";
 import Rejilla from "../componentes/Rejilla";
 import BuscadorAuditoria from "../componentes/BuscadorAuditoria";
@@ -17,6 +17,12 @@ export const metadata: Metadata = {
 export default function Auditorias() {
   return (
     <>
+      {/* El buscador de esta página llama al motor en cuanto alguien escribe
+          una dirección. Abrir la conexión desde ya —DNS, TLS— le ahorra al
+          primer clic el saludo completo con otro dominio. Solo aquí: en el
+          resto del sitio ese dominio es un enlace que quizá nadie toque. */}
+      <link rel="preconnect" href={MOTOR} crossOrigin="use-credentials" />
+      <link rel="dns-prefetch" href={MOTOR} />
       <Datos nodos={[migas([{ nombre: "Auditorías SEO", url: "/auditorias/" }])]} />
       <section className="band band--close band--deep deep grid-bg">
         <div className="wrap hero__grid">

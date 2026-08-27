@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Captura from "./componentes/Captura";
 import { ALCANCE, AUDITORIAS, CIFRAS, CON_CAPTURA, DISCIPLINAS, SITE, TAPREVIEWS, TRABAJO } from "@/lib/contenido";
 import { WA_GENERAL } from "@/lib/enlaces";
 import Marquesina from "./componentes/Marquesina";
@@ -50,12 +50,27 @@ export default function Inicio() {
                   se quitó porque a quien contrata una agencia no le dice nada
                   y lo primero que ve no puede ser algo que no entiende. */}
               <figure className="proof__main tilt">
-                <Image src={enLinea[0].shot!} alt={`Sitio de ${enLinea[0].nombre}`} width={1200} height={672} priority />
+                {/* La imagen que decide el LCP de la portada. Medida en vivo:
+                    253px en celular, 638px en escritorio. */}
+                <Captura
+                  src={enLinea[0].shot!}
+                  alt={`Sitio de ${enLinea[0].nombre}`}
+                  width={1200}
+                  height={672}
+                  sizes="(max-width: 780px) 68vw, 640px"
+                  prioridad
+                />
               </figure>
               <div className="proof__row">
                 {enLinea.slice(1, 3).map((t) => (
                   <figure className="proof__thumb tilt" key={t.nombre}>
-                    <Image src={t.shot!} alt={`Sitio de ${t.nombre}`} width={1200} height={700} />
+                    <Captura
+                      src={t.shot!}
+                      alt={`Sitio de ${t.nombre}`}
+                      width={1200}
+                      height={700}
+                      sizes="(max-width: 780px) 21vw, 270px"
+                    />
                   </figure>
                 ))}
               </div>

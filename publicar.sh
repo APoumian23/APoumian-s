@@ -63,6 +63,14 @@ if ! pnpm exec next build > /tmp/publicar-build.log 2>&1; then
   exit 1
 fi
 
+echo "→ Afinando la exportación…"
+# Quita el polyfill que nadie usa y mete el CSS en el HTML. Los dos son
+# cosas que Next no deja configurar; el detalle está en scripts/afinar.mjs.
+if ! node scripts/afinar.mjs .next-build; then
+  echo "✗ El afinado falló. No se tocó nada de lo publicado." >&2
+  exit 1
+fi
+
 ORIGEN=".next-build"
 [ -f "$ORIGEN/index.html" ] || { echo "✗ La exportación no tiene index.html. Aborto."; exit 1; }
 
