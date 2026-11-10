@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ALCANCE, CON_CAPTURA, AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, TAPREVIEWS } from "@/lib/contenido";
+import { ALCANCE, CON_CAPTURA, AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, TAPREVIEWS, enPalabras } from "@/lib/contenido";
 import Rejilla from "../componentes/Rejilla";
 import Datos from "@/app/componentes/Datos";
 import { migas } from "@/lib/schema";
@@ -26,7 +26,7 @@ export default function Casos() {
             Trabajo <span className="swatch">que se puede revisar</span>.
           </h1>
           <p className="lede">
-            Tres clientes en línea, dos productos propios, doce sistemas que operan puertas
+            Tres clientes en línea, dos productos propios, {enPalabras(ALCANCE.length)} sistemas que operan puertas
             adentro, y el código con el que se construyeron. Casi nadie te enseña esto antes de
             que lo contrates.
           </p>
@@ -111,7 +111,7 @@ export default function Casos() {
           </header>
 
           {/* Las capturas van juntas y antes de las fichas, no una dentro de cada
-              tarjeta: solo cinco de los doce sistemas tienen imagen, y una
+              tarjeta: solo algunos sistemas tienen imagen, y una
               rejilla con siete huecos se lee peor que ninguna imagen.
 
               Todas llevan datos de demostración y el nombre del cliente borrado

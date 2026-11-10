@@ -465,6 +465,31 @@ export const ALCANCE = [
     que: "Tres portales con acceso por rol: administración, maestros y padres. Alumnos, inscripciones, cobros con pagos parciales y condonaciones, facturación CFDI 4.0, inventario de uniformes, boletas y kardex en PDF.",
   },
   {
+    id: "app-docente",
+    meta:
+      "App de escritorio para dar clase en la universidad: plan y sesiones, asistencia, calificaciones por parcial, tareas de Google Classroom, exámenes generados con IA y un portal en línea para los alumnos.",
+    hace: [
+      "Plan del periodo con sus sesiones, reloj de clase por actividad y modo para proyectar",
+      "Pase de lista con alertas de alumnos en riesgo por faltas",
+      "Calificaciones por parcial con su esquema de ponderación y lo que le falta a cada alumno",
+      "Tareas de Google Classroom alumno por alumno: entregó, tarde, no entregó y su calificación",
+      "Revisión de copias por los metadatos de los archivos y el texto repetido entre entregas",
+      "Exámenes, tareas, glosarios y presentaciones generados con IA desde el temario",
+      "Portal en línea para los alumnos: exámenes vigilados, entregas, avance y juego en vivo",
+      "Editor de Python y JavaScript que corre sin internet",
+    ],
+    pantallas: [
+      { src: "/sistemas/docente-tareas.webp", alt: "Tareas del grupo alumno por alumno: cada celda dice si entregó, si fue tarde o si no entregó, con su calificación, y al final el número de entregas y el promedio.", pie: "Tareas por alumno", movil: "/sistemas/docente-tareas-detalle.webp" },
+      { src: "/sistemas/docente-calificaciones.webp", alt: "Calificaciones del parcial: tareas, asistencia, participación y examen con su peso, lo que lleva cada alumno, su calificación al ritmo actual y cuánto necesita en lo que falta.", pie: "Calificaciones del parcial" },
+      { src: "/sistemas/docente-estudio-ia.webp", alt: "Estudio con IA: elegir la materia y qué generar —examen, tarea, cuestionario, glosario, plan de sesión o presentación— y la lista de lo ya generado para esa materia.", pie: "Estudio con IA" },
+    ],
+    grupo: "Gestión y operación",
+    titulo: "App para dar clase",
+    sector: "Universidad",
+    estado: "En uso",
+    que: "El docente lleva el curso completo desde una app: plan y sesiones, asistencia, calificaciones por parcial, tareas de Classroom y exámenes hechos con IA. Los alumnos entran a su propio portal en línea.",
+  },
+  {
     id: "agenda-belleza",
     grupo: "Gestión y operación",
     titulo: "Agenda y caja para salones",
@@ -858,3 +883,10 @@ export const CIFRAS = [
   { n: String(ALCANCE.length), q: "sistemas a la medida", href: "/casos/#sis-t" },
   { n: String(CASOS.length), q: "sitios de clientes en línea", href: "/casos/" },
 ];
+
+
+/* Las cuentas que van dentro de una frase también se derivan, por la misma razón
+ * que CIFRAS: «doce sistemas» siguió escrito en /casos cuando ya eran trece. */
+const PALABRAS = ["cero", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez",
+  "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte"];
+export const enPalabras = (n: number) => PALABRAS[n] ?? String(n);
