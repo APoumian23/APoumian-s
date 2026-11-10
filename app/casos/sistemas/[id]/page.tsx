@@ -71,11 +71,18 @@ export default async function Sistema({ params }: { params: Promise<{ id: string
             <h2 className="head__title" id="pant-t">
               {pantallas.length > 1 ? "Las pantallas." : "La pantalla."}
             </h2>
-            <p className="head__note">
-              Con datos de demostración. El nombre del cliente se borra antes de tomar la foto:
-              enseñar la pantalla de un cliente real sería un problema para él, no una prueba
-              para nosotros.
-            </p>
+            {s.codigo ? (
+              <p className="head__note">
+                Con datos inventados: ninguna cifra es de una persona real. Es un producto propio,
+                así que el código también se puede revisar.
+              </p>
+            ) : (
+              <p className="head__note">
+                Con datos de demostración. El nombre del cliente se borra antes de tomar la foto:
+                enseñar la pantalla de un cliente real sería un problema para él, no una prueba
+                para nosotros.
+              </p>
+            )}
           </header>
           <div className="galeria galeria--una">
             {pantallas.map((p) => (
@@ -88,6 +95,9 @@ export default async function Sistema({ params }: { params: Promise<{ id: string
 
           <p className="hero__actions" style={{ marginTop: "var(--space-2xl)" }}>
             <Link className="btn" href="/contacto">¿Necesitas algo así? Hablemos</Link>
+            {s.codigo && (
+              <a className="link" href={s.codigo} target="_blank" rel="noopener">Ver el código en GitHub ↗</a>
+            )}
             <Link className="link" href="/casos/#sis-t">Ver los demás sistemas →</Link>
           </p>
         </div>

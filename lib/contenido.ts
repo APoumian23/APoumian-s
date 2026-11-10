@@ -604,6 +604,32 @@ export const ALCANCE = [
     que: "Lee la base de conocimiento del negocio cada mañana, arma el resumen de lo que avanzó y lo que está detenido, y lo manda por WhatsApp. Hoy recorre 40 proyectos; la conversación en dos vías está en diseño.",
   },
   {
+    id: "mis-finanzas",
+    meta:
+      "App instalable de finanzas personales: lee los estados de cuenta en PDF de cinco bancos, cuenta cada compra en el mes de su corte, dice cuánto te queda para gastar y si te alcanza para pagar cada tarjeta.",
+    hace: [
+      "Cuánto te queda este mes para tus cosas, y cuánto al día, ya con préstamos, compras a meses y gastos fijos",
+      "Lee los estados de cuenta en PDF de BBVA, Banamex, HSBC, American Express y Revolut, y comprueba que cuadren con los totales del banco",
+      "Los estados escaneados se leen con reconocimiento de texto dentro del propio teléfono",
+      "Cada compra con tarjeta cuenta en el mes de su corte, que es cuando de verdad la pagas",
+      "Calendario de pagos: si te alcanza para cada tarjeta y cuánto interés pagarías dejando solo el mínimo",
+      "Préstamos mensuales o quincenales, con IVA sobre intereses, atraso y fecha en que terminas",
+      "Lo que te pasas en un mes se descuenta del siguiente, y un estimado del mes que viene",
+      "Funciona sin internet y se sincroniza con un servidor propio",
+    ],
+    pantallas: [
+      { src: "/sistemas/finanzas-inicio.webp", alt: "Inicio de la app: indicador de cuánto del mes ya se usó, lo que queda para gastar y por día, los próximos pagos e ingresos, y el desglose del mes entre préstamos, compras a meses, gastos fijos y ahorro.", pie: "Tu mes" },
+      { src: "/sistemas/finanzas-calendario.webp", alt: "Calendario de pagos: para cada tarjeta, si alcanza para pagarla completa y cuánto falta del mínimo; lo que queda de dinero después de cada pago y cada ingreso, con una gráfica de cómo se mueve.", pie: "Calendario de pagos" },
+      { src: "/sistemas/finanzas-prestamos.webp", alt: "Préstamos: cuánto se debe en total y en cada uno, la tasa, el avance de lo pagado, cuándo se termina y cuánto falta de intereses.", pie: "Préstamos" },
+    ],
+    codigo: "https://github.com/APoumian23/mis-finanzas-app",
+    grupo: "Asistentes y automatización",
+    titulo: "App de finanzas personales",
+    sector: "Producto propio",
+    estado: "En uso",
+    que: "Le dices qué tarjetas y préstamos tienes, subes tus estados de cuenta y te contesta tres cosas: cuánto te queda para gastar este mes, qué tienes que pagar y cuándo, y cuándo terminas de pagar tus deudas.",
+  },
+  {
     id: "tienda-operacion",
     meta:
       "Tienda que además opera: precio por volumen en vivo, punto de venta para el mostrador, un mismo inventario para los dos canales y comisión por vendedor.",
@@ -851,6 +877,8 @@ export type Muestra = {
   /** Qué hace por dentro. Sale de la nota del proyecto en el vault. */
   hace: readonly string[];
   pantallas: readonly Pantalla[];
+  /** Repositorio público, cuando el código se puede enseñar (solo productos propios). */
+  codigo?: string;
 };
 
 export const CON_CAPTURA: Muestra[] = ALCANCE.flatMap((x) =>
@@ -864,6 +892,7 @@ export const CON_CAPTURA: Muestra[] = ALCANCE.flatMap((x) =>
         meta: "meta" in x ? x.meta : undefined,
         hace: "hace" in x ? x.hace : [],
         pantallas: x.pantallas,
+        codigo: "codigo" in x ? x.codigo : undefined,
       }]
     : [],
 );
