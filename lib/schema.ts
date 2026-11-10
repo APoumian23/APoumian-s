@@ -35,6 +35,7 @@ export const negocio = {
   telephone: TEL_E164,
   image: `${SITE.dominio}/og.png`,
   logo: `${SITE.dominio}/marca/isotipo-marino.svg`,
+  sameAs: [SITE.github],
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",

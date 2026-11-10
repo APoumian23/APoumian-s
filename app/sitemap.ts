@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { CASOS, CON_CAPTURA, DISCIPLINAS, SITE } from "@/lib/contenido";
+import { CASOS, PAGINAS_SISTEMA, DISCIPLINAS, SITE } from "@/lib/contenido";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const ahora = new Date();
@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...CASOS.map((c) => ({ p: `/casos/${c.slug}`, pr: 0.7 })),
     /* Una página por sistema con captura. Se derivan de la misma lista que las
        pinta, así que una captura nueva entra sola al sitemap. */
-    ...CON_CAPTURA.map((s) => ({ p: `/casos/sistemas/${s.id}`, pr: 0.6 })),
+    ...PAGINAS_SISTEMA.map((s) => ({ p: `/casos/sistemas/${s.id}`, pr: 0.6 })),
     { p: "/estudio", pr: 0.6 },
     { p: "/contacto", pr: 0.8 },
     { p: "/privacidad", pr: 0.3 },

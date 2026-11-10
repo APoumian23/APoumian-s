@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CON_CAPTURA } from "@/lib/contenido";
+import { PAGINAS_SISTEMA } from "@/lib/contenido";
 import { resumen, titulo } from "@/lib/meta";
 
 /* Una página por sistema.
@@ -17,12 +17,12 @@ import { resumen, titulo } from "@/lib/meta";
  * Solo se generan las que tienen captura: una página de detalle sin imagen no
  * añade nada a lo que la ficha ya dice. */
 export function generateStaticParams() {
-  return CON_CAPTURA.map((s) => ({ id: s.id }));
+  return PAGINAS_SISTEMA.map((s) => ({ id: s.id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
-  const s = CON_CAPTURA.find((x) => x.id === id);
+  const s = PAGINAS_SISTEMA.find((x) => x.id === id);
   if (!s) return {};
   return {
     title: titulo(s.titulo, "sistema a la medida"),
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function Sistema({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const s = CON_CAPTURA.find((x) => x.id === id);
+  const s = PAGINAS_SISTEMA.find((x) => x.id === id);
   if (!s) notFound();
 
   const pantallas = s.pantallas;
@@ -98,7 +98,9 @@ export default async function Sistema({ params }: { params: Promise<{ id: string
             {s.codigo && (
               <a className="link" href={s.codigo} target="_blank" rel="noopener">Ver el código en GitHub ↗</a>
             )}
-            <Link className="link" href="/casos/#sis-t">Ver los demás sistemas →</Link>
+            {s.codigo
+              ? <Link className="link" href="/casos/#prop-t">Ver los demás productos →</Link>
+              : <Link className="link" href="/casos/#sis-t">Ver los demás sistemas →</Link>}
           </p>
         </div>
       </section>

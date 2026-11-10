@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ALCANCE, CON_CAPTURA, AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, TAPREVIEWS, enPalabras } from "@/lib/contenido";
+import { ALCANCE, CON_CAPTURA, AUDITORIAS, CASOS, CODIGO, PRODUCTOS_TRABAJO, PROPIOS, TAPREVIEWS, enPalabras } from "@/lib/contenido";
 import Rejilla from "../componentes/Rejilla";
 import Datos from "@/app/componentes/Datos";
 import { migas } from "@/lib/schema";
@@ -26,7 +26,7 @@ export default function Casos() {
             Trabajo <span className="swatch">que se puede revisar</span>.
           </h1>
           <p className="lede">
-            Tres clientes en línea, dos productos propios, {enPalabras(ALCANCE.length)} sistemas que operan puertas
+            Tres clientes en línea, {enPalabras(PRODUCTOS_TRABAJO.length + PROPIOS.length)} productos propios, {enPalabras(ALCANCE.length)} sistemas que operan puertas
             adentro, y el código con el que se construyeron. Casi nadie te enseña esto antes de
             que lo contrates.
           </p>
@@ -69,7 +69,7 @@ export default function Casos() {
         <div className="wrap">
           <header className="head">
             <h2 className="head__title" id="prop-t">Productos propios.</h2>
-            <p className="head__note">Construidos para venderlos como servicio, no para un cliente.</p>
+            <p className="head__note">Hechos por nosotros, no para un cliente: {enPalabras(PRODUCTOS_TRABAJO.length)} se venden como servicio y {enPalabras(PROPIOS.length)} son de código abierto.</p>
           </header>
 
           <Rejilla
@@ -93,6 +93,15 @@ export default function Casos() {
                 href: "/tapreviews",
                 hrefTexto: "Ver TapReviews",
               },
+              ...PROPIOS.map((x, i) => ({
+                id: x.id,
+                numero: String(PRODUCTOS_TRABAJO.length + i + 1).padStart(2, "0"),
+                titulo: x.titulo,
+                lema: x.que,
+                detalle: `${x.estado} · código público en GitHub`,
+                href: `/casos/sistemas/${x.id}`,
+                hrefTexto: "Ver pantallas y código",
+              })),
             ]}
           />
         </div>

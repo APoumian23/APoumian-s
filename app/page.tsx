@@ -87,6 +87,9 @@ export default function Inicio() {
                 {t.sitio} ↗
               </a>
             ))}
+            <a className="link" href={SITE.github} target="_blank" rel="noopener noreferrer">
+              GitHub ↗
+            </a>
           </p>
 
           <dl className="stats">

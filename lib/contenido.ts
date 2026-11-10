@@ -32,6 +32,8 @@ export const SITE = {
   eslogan: "Toda tu presencia digital, con un solo equipo.",
   ciudad: "Celaya, Guanajuato",
   pais: "México",
+  /** Perfiles públicos. LinkedIn queda pendiente: se agrega aquí cuando haya dirección. */
+  github: "https://github.com/APoumian23",
 } as const;
 
 export type Servicio = {
@@ -465,31 +467,6 @@ export const ALCANCE = [
     que: "Tres portales con acceso por rol: administración, maestros y padres. Alumnos, inscripciones, cobros con pagos parciales y condonaciones, facturación CFDI 4.0, inventario de uniformes, boletas y kardex en PDF.",
   },
   {
-    id: "app-docente",
-    meta:
-      "App de escritorio para dar clase en la universidad: plan y sesiones, asistencia, calificaciones por parcial, tareas de Google Classroom, exámenes generados con IA y un portal en línea para los alumnos.",
-    hace: [
-      "Plan del periodo con sus sesiones, reloj de clase por actividad y modo para proyectar",
-      "Pase de lista con alertas de alumnos en riesgo por faltas",
-      "Calificaciones por parcial con su esquema de ponderación y lo que le falta a cada alumno",
-      "Tareas de Google Classroom alumno por alumno: entregó, tarde, no entregó y su calificación",
-      "Revisión de copias por los metadatos de los archivos y el texto repetido entre entregas",
-      "Exámenes, tareas, glosarios y presentaciones generados con IA desde el temario",
-      "Portal en línea para los alumnos: exámenes vigilados, entregas, avance y juego en vivo",
-      "Editor de Python y JavaScript que corre sin internet",
-    ],
-    pantallas: [
-      { src: "/sistemas/docente-tareas.webp", alt: "Tareas del grupo alumno por alumno: cada celda dice si entregó, si fue tarde o si no entregó, con su calificación, y al final el número de entregas y el promedio.", pie: "Tareas por alumno", movil: "/sistemas/docente-tareas-detalle.webp" },
-      { src: "/sistemas/docente-calificaciones.webp", alt: "Calificaciones del parcial: tareas, asistencia, participación y examen con su peso, lo que lleva cada alumno, su calificación al ritmo actual y cuánto necesita en lo que falta.", pie: "Calificaciones del parcial" },
-      { src: "/sistemas/docente-estudio-ia.webp", alt: "Estudio con IA: elegir la materia y qué generar —examen, tarea, cuestionario, glosario, plan de sesión o presentación— y la lista de lo ya generado para esa materia.", pie: "Estudio con IA" },
-    ],
-    grupo: "Gestión y operación",
-    titulo: "App para dar clase",
-    sector: "Universidad",
-    estado: "En uso",
-    que: "El docente lleva el curso completo desde una app: plan y sesiones, asistencia, calificaciones por parcial, tareas de Classroom y exámenes hechos con IA. Los alumnos entran a su propio portal en línea.",
-  },
-  {
     id: "agenda-belleza",
     grupo: "Gestión y operación",
     titulo: "Agenda y caja para salones",
@@ -604,32 +581,6 @@ export const ALCANCE = [
     que: "Lee la base de conocimiento del negocio cada mañana, arma el resumen de lo que avanzó y lo que está detenido, y lo manda por WhatsApp. Hoy recorre 40 proyectos; la conversación en dos vías está en diseño.",
   },
   {
-    id: "mis-finanzas",
-    meta:
-      "App instalable de finanzas personales: lee los estados de cuenta en PDF de cinco bancos, cuenta cada compra en el mes de su corte, dice cuánto te queda para gastar y si te alcanza para pagar cada tarjeta.",
-    hace: [
-      "Cuánto te queda este mes para tus cosas, y cuánto al día, ya con préstamos, compras a meses y gastos fijos",
-      "Lee los estados de cuenta en PDF de BBVA, Banamex, HSBC, American Express y Revolut, y comprueba que cuadren con los totales del banco",
-      "Los estados escaneados se leen con reconocimiento de texto dentro del propio teléfono",
-      "Cada compra con tarjeta cuenta en el mes de su corte, que es cuando de verdad la pagas",
-      "Calendario de pagos: si te alcanza para cada tarjeta y cuánto interés pagarías dejando solo el mínimo",
-      "Préstamos mensuales o quincenales, con IVA sobre intereses, atraso y fecha en que terminas",
-      "Lo que te pasas en un mes se descuenta del siguiente, y un estimado del mes que viene",
-      "Funciona sin internet y se sincroniza con un servidor propio",
-    ],
-    pantallas: [
-      { src: "/sistemas/finanzas-inicio.webp", alt: "Inicio de la app: indicador de cuánto del mes ya se usó, lo que queda para gastar y por día, los próximos pagos e ingresos, y el desglose del mes entre préstamos, compras a meses, gastos fijos y ahorro.", pie: "Tu mes" },
-      { src: "/sistemas/finanzas-calendario.webp", alt: "Calendario de pagos: para cada tarjeta, si alcanza para pagarla completa y cuánto falta del mínimo; lo que queda de dinero después de cada pago y cada ingreso, con una gráfica de cómo se mueve.", pie: "Calendario de pagos" },
-      { src: "/sistemas/finanzas-prestamos.webp", alt: "Préstamos: cuánto se debe en total y en cada uno, la tasa, el avance de lo pagado, cuándo se termina y cuánto falta de intereses.", pie: "Préstamos" },
-    ],
-    codigo: "https://github.com/APoumian23/mis-finanzas-app",
-    grupo: "Asistentes y automatización",
-    titulo: "App de finanzas personales",
-    sector: "Producto propio",
-    estado: "En uso",
-    que: "Le dices qué tarjetas y préstamos tienes, subes tus estados de cuenta y te contesta tres cosas: cuánto te queda para gastar este mes, qué tienes que pagar y cuándo, y cuándo terminas de pagar tus deudas.",
-  },
-  {
     id: "tienda-operacion",
     meta:
       "Tienda que además opera: precio por volumen en vivo, punto de venta para el mostrador, un mismo inventario para los dos canales y comisión por vendedor.",
@@ -730,6 +681,64 @@ export const PRODUCTOS_TRABAJO = [
     que: "Tarjetas NFC ligadas a comercios para reseñas de Google. Las tarjetas se graban en blanco y se asignan después; panel de admin, portal del comercio, métricas de taps y reportes mensuales.",
     tipo: "Producto · NFC",
     href: "/tapreviews",
+  },
+] as const;
+
+
+/** Productos propios que además tienen pantallas y código público.
+ *  Van con los productos en /casos, no entre los sistemas: no son a la medida de
+ *  un cliente ni corren puertas adentro de un negocio. Su página de detalle sí
+ *  comparte la plantilla de los sistemas (/casos/sistemas/[id]). */
+export const PROPIOS = [
+  {
+    id: "mis-finanzas",
+    meta:
+      "App instalable de finanzas personales: lee los estados de cuenta en PDF de cinco bancos, cuenta cada compra en el mes de su corte, dice cuánto te queda para gastar y si te alcanza para pagar cada tarjeta.",
+    hace: [
+      "Cuánto te queda este mes para tus cosas, y cuánto al día, ya con préstamos, compras a meses y gastos fijos",
+      "Lee los estados de cuenta en PDF de BBVA, Banamex, HSBC, American Express y Revolut, y comprueba que cuadren con los totales del banco",
+      "Los estados escaneados se leen con reconocimiento de texto dentro del propio teléfono",
+      "Cada compra con tarjeta cuenta en el mes de su corte, que es cuando de verdad la pagas",
+      "Calendario de pagos: si te alcanza para cada tarjeta y cuánto interés pagarías dejando solo el mínimo",
+      "Préstamos mensuales o quincenales, con IVA sobre intereses, atraso y fecha en que terminas",
+      "Lo que te pasas en un mes se descuenta del siguiente, y un estimado del mes que viene",
+      "Funciona sin internet y se sincroniza con un servidor propio",
+    ],
+    pantallas: [
+      { src: "/sistemas/finanzas-inicio.webp", alt: "Inicio de la app: indicador de cuánto del mes ya se usó, lo que queda para gastar y por día, los próximos pagos e ingresos, y el desglose del mes entre préstamos, compras a meses, gastos fijos y ahorro.", pie: "Tu mes" },
+      { src: "/sistemas/finanzas-calendario.webp", alt: "Calendario de pagos: para cada tarjeta, si alcanza para pagarla completa y cuánto falta del mínimo; lo que queda de dinero después de cada pago y cada ingreso, con una gráfica de cómo se mueve.", pie: "Calendario de pagos" },
+      { src: "/sistemas/finanzas-prestamos.webp", alt: "Préstamos: cuánto se debe en total y en cada uno, la tasa, el avance de lo pagado, cuándo se termina y cuánto falta de intereses.", pie: "Préstamos" },
+    ],
+    codigo: "https://github.com/APoumian23/mis-finanzas-app",
+    titulo: "App de finanzas personales",
+    sector: "Producto propio",
+    estado: "En uso",
+    que: "Le dices qué tarjetas y préstamos tienes, subes tus estados de cuenta y te contesta tres cosas: cuánto te queda para gastar este mes, qué tienes que pagar y cuándo, y cuándo terminas de pagar tus deudas.",
+  },
+  {
+    id: "app-docente",
+    meta:
+      "App de escritorio para dar clase en la universidad: plan y sesiones, asistencia, calificaciones por parcial, tareas de Google Classroom, exámenes generados con IA y un portal en línea para los alumnos.",
+    hace: [
+      "Plan del periodo con sus sesiones, reloj de clase por actividad y modo para proyectar",
+      "Pase de lista con alertas de alumnos en riesgo por faltas",
+      "Calificaciones por parcial con su esquema de ponderación y lo que le falta a cada alumno",
+      "Tareas de Google Classroom alumno por alumno: entregó, tarde, no entregó y su calificación",
+      "Revisión de copias por los metadatos de los archivos y el texto repetido entre entregas",
+      "Exámenes, tareas, glosarios y presentaciones generados con IA desde el temario",
+      "Portal en línea para los alumnos: exámenes vigilados, entregas, avance y juego en vivo",
+      "Editor de Python y JavaScript que corre sin internet",
+    ],
+    pantallas: [
+      { src: "/sistemas/docente-tareas.webp", alt: "Tareas del grupo alumno por alumno: cada celda dice si entregó, si fue tarde o si no entregó, con su calificación, y al final el número de entregas y el promedio.", pie: "Tareas por alumno", movil: "/sistemas/docente-tareas-detalle.webp" },
+      { src: "/sistemas/docente-calificaciones.webp", alt: "Calificaciones del parcial: tareas, asistencia, participación y examen con su peso, lo que lleva cada alumno, su calificación al ritmo actual y cuánto necesita en lo que falta.", pie: "Calificaciones del parcial" },
+      { src: "/sistemas/docente-estudio-ia.webp", alt: "Estudio con IA: elegir la materia y qué generar —examen, tarea, cuestionario, glosario, plan de sesión o presentación— y la lista de lo ya generado para esa materia.", pie: "Estudio con IA" },
+    ],
+    codigo: "https://github.com/APoumian23/app-docente",
+    titulo: "App para dar clase",
+    sector: "Universidad",
+    estado: "En uso",
+    que: "El docente lleva el curso completo desde una app: plan y sesiones, asistencia, calificaciones por parcial, tareas de Classroom y exámenes hechos con IA. Los alumnos entran a su propio portal en línea.",
   },
 ] as const;
 
@@ -892,10 +901,18 @@ export const CON_CAPTURA: Muestra[] = ALCANCE.flatMap((x) =>
         meta: "meta" in x ? x.meta : undefined,
         hace: "hace" in x ? x.hace : [],
         pantallas: x.pantallas,
-        codigo: "codigo" in x ? x.codigo : undefined,
       }]
     : [],
 );
+
+/** Todo lo que tiene página de detalle: los sistemas con captura y los productos propios. */
+export const PAGINAS_SISTEMA: Muestra[] = [
+  ...CON_CAPTURA,
+  ...PROPIOS.map((x) => ({
+    id: x.id, titulo: x.titulo, sector: x.sector, estado: x.estado, que: x.que,
+    meta: x.meta, hace: x.hace, pantallas: x.pantallas, codigo: x.codigo,
+  })),
+];
 
 
 /* Las cifras se cuentan, no se escriben.
